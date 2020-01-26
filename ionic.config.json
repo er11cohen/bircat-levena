@@ -1,0 +1,7 @@
+{
+  "name": "bircatLevana",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
