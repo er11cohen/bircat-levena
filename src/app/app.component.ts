@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private localNotifications: LocalNotifications
+    private localNotifications: LocalNotifications,
+    private geolocation: Geolocation,
   ) {
     this.initializeApp();
   }
@@ -46,6 +48,14 @@ export class AppComponent {
         priority:2,
         trigger: {at: new Date(new Date().getTime() +190000)},
       });
+
+      this.geolocation.getCurrentPosition({timeout: 5000}).then((resp) => {
+        // resp.coords.latitude
+        // resp.coords.longitude
+        console.log(resp);
+       }).catch((error) => {
+         console.log('Error getting location', error);
+       });
     });
   }
 }
