@@ -8,6 +8,8 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { Storage } from '@ionic/storage';
 
 import { GlobalVariables } from './shared/global/global-variables';
+import { TranslateService } from '@ngx-translate/core';
+import { Languages } from './shared/enums';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +37,7 @@ export class AppComponent {
     private localNotifications: LocalNotifications,
     private geolocation: Geolocation,
     private storage: Storage,
+    public translate: TranslateService,
   ) {
     this.initializeApp();
   }
@@ -43,6 +46,8 @@ export class AppComponent {
     this.platform.ready().then(() => {
      // this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.setLanguage();
 
       this.localNotifications.schedule({
         id: 1,
@@ -70,5 +75,16 @@ export class AppComponent {
         });
        });
     });
+  }
+
+  private setLanguage() {
+    this.translate.setDefaultLang(Languages.HE);
+    let language = Languages.HE
+    switch (window.navigator.language) {
+      case 'en':
+          language = Languages.EN;
+          break;
+    }
+    this.translate.use(language);
   }
 }
