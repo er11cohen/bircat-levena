@@ -4,7 +4,10 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+import { Storage } from '@ionic/storage';
+
+import { GlobalVariables } from './shared/global/global-variables';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +34,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private localNotifications: LocalNotifications,
     private geolocation: Geolocation,
+    private storage: Storage,
   ) {
     this.initializeApp();
   }
@@ -49,12 +53,21 @@ export class AppComponent {
         trigger: {at: new Date(new Date().getTime() +190000)},
       });
 
-      this.geolocation.getCurrentPosition({timeout: 5000}).then((resp) => {
-        // resp.coords.latitude
-        // resp.coords.longitude
+      this.geolocation.getCurrentPosition({timeout: 5000}).then((resp: Geoposition) => {
         console.log(resp);
+        this.storage.set(GlobalVariables.LAST_COORD, {
+          latitude: resp.coords.latitude,
+          longitude: resp.coords.longitude,
+          altitude: resp.coords.altitude,
+        });
+
        }).catch((error) => {
-         console.log('Error getting location', error);
+         //console.log('Error getting location', error);
+         this.storage.get(GlobalVariables.LAST_COORD).then((coords) => {
+           if(coords) {
+            console.log('Your latitude is', coords);
+           }
+        });
        });
     });
   }
