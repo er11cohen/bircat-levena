@@ -2,7 +2,7 @@
 <widget id="com.eran.bircatlevana" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>תזכורת לברכת הלבנה</name>
     <description>אפלקציה לתזכורת לברכת הלבנה</description>
-    <content original-src="index.html" src="http://localhost:8102" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

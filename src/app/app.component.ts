@@ -80,10 +80,8 @@ export class AppComponent {
   private setLanguage() {
     this.translate.setDefaultLang(Languages.HE);
     let language = Languages.HE
-    switch (window.navigator.language) {
-      case 'en':
-          language = Languages.EN;
-          break;
+    if(window.navigator.language.startsWith('en')) {
+      language = Languages.EN;
     }
     this.translate.use(language);
   }
