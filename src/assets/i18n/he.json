@@ -1,3 +1,9 @@
 {
-    "APPLE": "תפוח"
+  "DIR": "rtl",
+  "SIDE": "end",
+  "SETTINGS": "הגדרות",
+  "MENU": "תפריט",
+  "BIRCAT_HALEVANA": "ברכת הלבנה",
+  "BL_START_TIME": "תחילת זמן ברכת הלבנה",
+  "BL_END_TIME": "סוף זמן ברכת הלבנה"
 }

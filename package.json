@@ -11,7 +11,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "ral": "npx ionic cordova run android -l",
-    "ra": "npx ionic cordova run android"
+    "ra": "npx ionic cordova run android",
+    "ba": "npx ionic cordova build android"
   },
   "private": true,
   "dependencies": {
@@ -40,7 +41,7 @@
     "cordova-plugin-x-toast": "^2.7.2",
     "cordova-sqlite-storage": "^4.0.0",
     "core-js": "^2.5.4",
-    "kosher-zmanim": "^0.5.1",
+    "kosher-zmanim": "^0.6.1",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
