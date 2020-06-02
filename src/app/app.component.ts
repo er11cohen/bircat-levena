@@ -141,6 +141,7 @@ export class AppComponent {
 
     private notification(): void {
         if (this.utilsService.isMobile()) {
+            // @ts-ignore
             console.log((cordova.plugins as any).notification.local.launchDetails);
             // {action: ’yes', id: 100}
         }
