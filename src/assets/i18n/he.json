@@ -3,7 +3,14 @@
   "SIDE": "end",
   "SETTINGS": "הגדרות",
   "MENU": "תפריט",
+  "SAVE": "שמירה",
+  "CANCEL": "ביטול",
+  "NUSACH": "נוסח",
   "BIRCAT_HALEVANA": "ברכת הלבנה",
   "BL_START_TIME": "תחילת זמן ברכת הלבנה",
+  "3_DAYS_AFTER_MOLAD": "3 ימים אחרי המולד",
+  "7_DAYS_AFTER_MOLAD": "7 ימים אחרי המולד",
+  "15_DAYS_AFTER_MOLAD": "15 ימים אחרי המולד",
+  "BETWEEN_MOLDOS": "באמצע בין מולד למולד",
   "BL_END_TIME": "סוף זמן ברכת הלבנה"
 }

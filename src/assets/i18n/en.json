@@ -2,8 +2,5 @@
   "DIR": "ltr",
   "SIDE": "start",
   "SETTINGS": "Settings",
-  "MENU": "Menu",
-  "BIRCAT_HALEVANA": "ברכת הלבנה",
-  "BL_START_TIME": "תחילת זמן ברכת הלבנה",
-  "BL_END_TIME": "סוף זמן ברכת הלבנה"
+  "MENU": "Menu"
 }

@@ -3,10 +3,45 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>settings</ion-title>
+    <ion-title>  {{ 'SETTINGS' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="settings">
+  <ion-list class="ion-no-padding">
+    <ion-item-group>
+<!--      <ion-item-divider color="light">הגדרות אפליקציה</ion-item-divider>-->
+      <ion-item lines="inset">
+        <ion-icon name="book" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ 'NUSACH' | translate }}</ion-label>
+        <ion-select [(ngModel)]="settings.nusach" (ionChange)="setSettings()" cancelText="{{ 'CANCEL' | translate }}"
+                    okText="{{ 'SAVE' | translate }}">
+          <ion-select-option [value]="nusach.SFARAD">ספרד</ion-select-option>
+          <ion-select-option [value]="nusach.ASKENAZ">אשכנז</ion-select-option>
+          <ion-select-option [value]="nusach.EDOT_MIZRACH">עדות המזרח</ion-select-option>
+          <ion-select-option [value]="nusach.TEIMAN">תימן</ion-select-option>
+        </ion-select>
+      </ion-item>
 
+      <ion-item lines="inset">
+        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ 'BL_START_TIME' | translate }}</ion-label>
+        <ion-select dir="rtl" [(ngModel)]="settings.startBircatLevana" (ionChange)="setSettings()" cancelText="{{ 'CANCEL' | translate }}"
+                    okText="{{ 'SAVE' | translate }}">
+          <ion-select-option [value]="startBircatLevana.THREE">{{ '3_DAYS_AFTER_MOLAD' | translate }}</ion-select-option>
+          <ion-select-option [value]="startBircatLevana.SEVEN">{{ '7_DAYS_AFTER_MOLAD' | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="inset">
+        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ 'BL_END_TIME' | translate }}</ion-label>
+        <ion-select dir="rtl" [(ngModel)]="settings.endBircatLevana" (ionChange)="setSettings()" cancelText="{{ 'CANCEL' | translate }}"
+                    okText="{{ 'SAVE' | translate }}">
+          <ion-select-option [value]="endBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS">{{ '15_DAYS_AFTER_MOLAD' | translate }}</ion-select-option>
+          <ion-select-option [value]="endBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_BETWEEN_MOLDOS">{{ 'BETWEEN_MOLDOS' | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
 </ion-content>

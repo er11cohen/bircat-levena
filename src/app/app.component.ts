@@ -6,15 +6,14 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {Geolocation, Geoposition} from '@ionic-native/geolocation/ngx';
 import {Storage} from '@ionic/storage';
-import {Device} from '@ionic-native/device/ngx';
 import {Toast} from '@ionic-native/toast/ngx';
-import {take} from 'rxjs/operators';
 import {GlobalVariables} from './shared/global/global-variables';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Languages} from './shared/enums';
 import {JewishCalendar} from 'kosher-zmanim';
 import {UtilsService} from './services/utils.service';
 import {NotificationsService} from './services/notifications.service';
+import {SettingsService} from './services/settings.service';
 
 @Component({
     selector: 'app-root',
@@ -48,10 +47,11 @@ export class AppComponent {
         private geolocation: Geolocation,
         private storage: Storage,
         public translate: TranslateService,
-        public device: Device,
+        // public device: Device,
         private toast: Toast,
         private utilsService: UtilsService,
         private notificationsService: NotificationsService,
+        private settingsService: SettingsService,
     ) {
         this.initializeApp();
     }
@@ -59,7 +59,7 @@ export class AppComponent {
     async initializeApp() {
         await this.platform.ready();
 
-        console.log(this.device);
+        // console.log(this.device);
 
         // this.statusBar.styleDefault();
         this.splashScreen.hide();
@@ -69,6 +69,8 @@ export class AppComponent {
         // workaround to use after in 'this.translate.instant'
         await this.translate.get('BL_START_TIME').toPromise();
         this.notification();
+
+        await this.settingsService.initialSettings();
 
         this.geolocation.getCurrentPosition({timeout: 5000}).then((resp: Geoposition) => {
             console.log(resp);
@@ -101,7 +103,7 @@ export class AppComponent {
     private setLanguage() {
         this.languageChangedSubscription();
         this.translate.setDefaultLang(Languages.HE);
-        const language = Languages.EN;
+        const language = Languages.HE;
         // if (window.navigator.language.startsWith('en')) {
         //     language = Languages.EN;
         // }
