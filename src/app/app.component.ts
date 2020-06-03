@@ -10,7 +10,6 @@ import {Toast} from '@ionic-native/toast/ngx';
 import {GlobalVariables} from './shared/global/global-variables';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Languages} from './shared/enums';
-import {JewishCalendar} from 'kosher-zmanim';
 import {UtilsService} from './services/utils.service';
 import {NotificationsService} from './services/notifications.service';
 import {SettingsService} from './services/settings.service';
@@ -21,6 +20,7 @@ import {SettingsService} from './services/settings.service';
     styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+    public isRtl = true;
     public appPages = [
         {
             title: 'BIRCAT_HALEVANA',
@@ -66,11 +66,7 @@ export class AppComponent {
 
         this.setLanguage();
 
-        // workaround to use after in 'this.translate.instant'
-        await this.translate.get('BL_START_TIME').toPromise();
-        this.notification();
-
-        await this.settingsService.initialSettings();
+        await this.utilsService.initialData();
 
         this.geolocation.getCurrentPosition({timeout: 5000}).then((resp: Geoposition) => {
             console.log(resp);
@@ -94,6 +90,7 @@ export class AppComponent {
 
     private languageChangedSubscription(): void {
         this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.isRtl = event.lang === 'he';
             if (document && document.body) {
                 document.body.dir = event.translations.DIR;
             }
@@ -111,32 +108,31 @@ export class AppComponent {
     }
 
     private setZmanim(): void {
-        this.notificationsService.createBLNotifications();
+         this.notificationsService.createBLNotifications();
 
 
-        const jewishCalendar = new JewishCalendar();
-        const tchilas = jewishCalendar.getTchilasZmanKidushLevana7Days();
-        console.log(tchilas);
-
-        this.localNotifications.schedule({
-            id: 1,
-            text: 'getTchilasZmanKidushLevana7Days',
-            sound: null,
-            foreground: true,
-            priority: 2,
-            trigger: {at: tchilas},
-        });
-
-        const sof = jewishCalendar.getSofZmanKidushLevana15Days();
-
-        this.localNotifications.schedule({
-            id: 2,
-            text: 'getSofZmanKidushLevana15Days',
-            sound: null,
-            foreground: true,
-            priority: 2,
-            trigger: {at: sof},
-        });
+        // const jewishCalendar = new JewishCalendar();
+        // const tchilas = jewishCalendar.getTchilasZmanKidushLevana7Days();
+        // console.log(tchilas);
+        // this.localNotifications.schedule({
+        //     id: 1,
+        //     text: 'getTchilasZmanKidushLevana7Days',
+        //     sound: null,
+        //     foreground: true,
+        //     priority: 2,
+        //     trigger: {at: new Date(tchilas)},
+        // });
+        //
+        // const sof = jewishCalendar.getSofZmanKidushLevana15Days();
+        //
+        // this.localNotifications.schedule({
+        //     id: 2,
+        //     text: 'getSofZmanKidushLevana15Days',
+        //     sound: null,
+        //     foreground: true,
+        //     priority: 2,
+        //     trigger: {at: sof},
+        // });
     }
 
     private notification(): void {

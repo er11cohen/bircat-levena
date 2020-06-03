@@ -17,13 +17,22 @@ export class SettingsService {
     }
 
     public async initialSettings(): Promise<void> {
+        if (this.settings) {
+            return;
+        }
         this.settings = await this.storage.get(GlobalVariables.SETTINGS);
+        const defaultSettings = {
+            nusach: Nusach.EDOT_MIZRACH,
+            startBircatLevana: StartBircatLevana.SEVEN,
+            endBircatLevana: EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_BETWEEN_MOLDOS,
+        } as Settings;
         if (!this.settings) {
+            this.settings = defaultSettings;
+        } else {
             this.settings = {
-                nusach: Nusach.EDOT_MIZRACH,
-                startBircatLevana: StartBircatLevana.SEVEN,
-                endBircatLevana: EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_BETWEEN_MOLDOS,
-            } as Settings;
+                ...defaultSettings,
+                ...this.settings
+            };
         }
     }
 
@@ -32,6 +41,7 @@ export class SettingsService {
     }
 
     public setSettings(settings: Settings): void {
+        this.settings = settings;
         this.storage.set(GlobalVariables.SETTINGS, settings);
     }
 }

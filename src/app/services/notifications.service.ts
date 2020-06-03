@@ -4,30 +4,35 @@ import {JewishCalendar} from 'kosher-zmanim';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {TranslateService} from '@ngx-translate/core';
 import {ILocalNotification} from '@ionic-native/local-notifications';
-import {GlobalVariables} from '../shared/global/global-variables';
 import {Storage} from '@ionic/storage';
+import {SettingsService} from './settings.service';
+import {Settings} from '../models/settings';
 
 @Injectable({
     providedIn: 'root'
 })
 export class NotificationsService {
 
+    public settings: Settings;
     private readonly months = 12;
 
     constructor(
         private localNotifications: LocalNotifications,
         private translate: TranslateService,
-        private storage: Storage) {
+        private storage: Storage,
+        private settingsService: SettingsService) {
     }
 
     public async createBLNotifications(): Promise<any> {
+        const settings = this.settingsService.getSettings();
         await this.localNotifications.cancelAll();
-        let startBL = await this.storage.get(GlobalVariables.START_BL_METHOD);
+
+        let startBL = settings.startBircatLevana;
         if (!startBL) {
             startBL = StartBircatLevana.SEVEN;
         }
 
-        let endBL = await this.storage.get(GlobalVariables.END_BL_METHOD);
+        let endBL = settings.endBircatLevana;
         if (!endBL) {
             endBL = EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS;
         }
@@ -47,7 +52,7 @@ export class NotificationsService {
             this.localNotifications.schedule(this.createLocalNotification({
                 id: i,
                 text: this.translate.instant('BL_START_TIME').toString(),
-                trigger: {at: tchilas},
+                trigger: {at: new Date(tchilas)},
             }));
 
             let sof;
@@ -61,7 +66,7 @@ export class NotificationsService {
             this.localNotifications.schedule(this.createLocalNotification({
                 id: i,
                 text: this.translate.instant('BL_END_TIME').toString(),
-                trigger: {at: sof},
+                trigger: {at: new Date(sof)},
             }));
         }
 

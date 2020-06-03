@@ -32,7 +32,7 @@
     "@ionic-native/toast": "^5.26.0",
     "@ionic/angular": "^5.1.1",
     "@ionic/storage": "^2.2.0",
-    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "cordova": "^9.0.0",
     "cordova-android": "^8.1.0",
@@ -40,7 +40,7 @@
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-local-notification": "^0.9.0-beta.3",
     "cordova-plugin-x-toast": "^2.7.2",
-    "cordova-sqlite-storage": "^4.0.0",
+    "cordova-sqlite-storage": "^5.0.0",
     "core-js": "^2.5.4",
     "kosher-zmanim": "^0.6.1",
     "rxjs": "^6.5.5",
@@ -48,7 +48,7 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "~0.801.2",
+    "@angular-devkit/architect": "^0.901.7",
     "@angular-devkit/build-angular": "^0.901.7",
     "@angular-devkit/core": "~9.1.7",
     "@angular-devkit/schematics": "~9.1.7",
@@ -94,8 +94,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-local-notification": {},
       "cordova-plugin-geolocation": {},
-      "cordova-sqlite-storage": {},
-      "cordova-plugin-x-toast": {}
+      "cordova-plugin-x-toast": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "android"
