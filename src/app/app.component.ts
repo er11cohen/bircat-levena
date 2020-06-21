@@ -4,10 +4,9 @@ import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
-import {Geolocation, Geoposition} from '@ionic-native/geolocation/ngx';
+import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {Storage} from '@ionic/storage';
 import {Toast} from '@ionic-native/toast/ngx';
-import {GlobalVariables} from './shared/global/global-variables';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Languages} from './shared/enums';
 import {UtilsService} from './services/utils.service';
@@ -68,22 +67,22 @@ export class AppComponent {
 
         await this.utilsService.initialData();
 
-        this.geolocation.getCurrentPosition({timeout: 5000}).then((resp: Geoposition) => {
-            console.log(resp);
-            this.storage.set(GlobalVariables.LAST_COORD, {
-                latitude: resp.coords.latitude,
-                longitude: resp.coords.longitude,
-                altitude: resp.coords.altitude,
-            });
-
-        }).catch((error) => {
-            // console.log('Error getting location', error);
-            this.storage.get(GlobalVariables.LAST_COORD).then((coords) => {
-                if (coords) {
-                    console.log('Your latitude is', coords);
-                }
-            });
-        });
+        // this.geolocation.getCurrentPosition({timeout: 5000}).then((resp: Geoposition) => {
+        //     console.log(resp);
+        //     this.storage.set(GlobalVariables.LAST_COORD, {
+        //         latitude: resp.coords.latitude,
+        //         longitude: resp.coords.longitude,
+        //         altitude: resp.coords.altitude,
+        //     });
+        //
+        // }).catch((error) => {
+        //     // console.log('Error getting location', error);
+        //     this.storage.get(GlobalVariables.LAST_COORD).then((coords) => {
+        //         if (coords) {
+        //             console.log('Your latitude is', coords);
+        //         }
+        //     });
+        // });
 
         this.setZmanim();
     }

@@ -12,7 +12,7 @@ export class SettingsService {
     private settings: Settings;
 
     constructor(
-        private storage: Storage
+        private readonly storage: Storage
     ) {
     }
 
