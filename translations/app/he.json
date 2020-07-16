@@ -1,0 +1,14 @@
+{
+  "locale": {
+    "ios": ["he"],
+    "android": ["iw"]
+  },
+  "config_ios": {
+    "CFBundleDisplayName": "תזכורת לברכת הלבנה",
+    "NSLocationWhenInUseUsageDescription": "לצורך חישוב הברכה במיקומך נדרש איכון למכשירך."
+  },
+  "config_android": {
+    "app_name": "תזכורת לברכת הלבנה"
+  },
+  "app": {}
+}

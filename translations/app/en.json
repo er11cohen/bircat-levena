@@ -1,0 +1,10 @@
+{
+  "config_ios": {
+    "CFBundleDisplayName": "Bircat Levane Reminder",
+    "NSLocationWhenInUseUsageDescription": "For Calculate the Bircat Levane in your location, access to the device location is required."
+  },
+  "config_android": {
+    "app_name": "Bircat Levane Reminder"
+  },
+  "app": {}
+}
