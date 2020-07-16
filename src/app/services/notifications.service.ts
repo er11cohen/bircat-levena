@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {EndBircatLevana, StartBircatLevana} from '../shared/enums';
-import {getZmanimJson, JewishCalendar, Options} from 'kosher-zmanim';
+import {getZmanimJson, JewishCalendar, Options, /*HebrewDateFormatter, Daf*/} from 'kosher-zmanim';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {TranslateService} from '@ngx-translate/core';
 import {Storage} from '@ionic/storage';
@@ -10,6 +10,7 @@ import {Moment} from 'moment';
 import {SettingsService} from './settings.service';
 import {Settings} from '../models/settings';
 import {CoordinatesService} from './coordinates.service';
+import {GlobalVariables} from '../shared/global/global-variables';
 
 @Injectable({
     providedIn: 'root'
@@ -27,23 +28,31 @@ export class NotificationsService {
         private readonly coordinatesService: CoordinatesService) {
     }
 
-    public async createBLNotifications(): Promise<any> {
+    public async createBLNotifications(): Promise<void> {
         const settings = this.settingsService.getSettings();
-        await this.localNotifications.cancelAll(); ///////////
+
+        await this.localNotifications.cancelAll();
+        // @ts-ignore
+        const launchDetails = (cordova.plugins as any)?.notification?.local?.launchDetails;
+        let index = 0;
+        if (launchDetails?.action === GlobalVariables.ALREADY_SAID) {
+            index = 1;
+        }
+
 
         let startBL = settings.startBircatLevana;
         if (!startBL) {
             startBL = StartBircatLevana.SEVEN;
-        }
 
+        }
         let endBL = settings.endBircatLevana;
         if (!endBL) {
             endBL = EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS;
-        }
 
+        }
         let date: Date;
-        for (let i = 0; i < this.months; i++) {
-            date = moment().add(i, 'M').toDate();
+        for (; index < this.months; index++) {
+            date = moment().add(index, 'M').toDate();
             const jewishCalendar = new JewishCalendar(date);
             let tchilas;
             if (startBL === StartBircatLevana.SEVEN) {
@@ -51,13 +60,6 @@ export class NotificationsService {
             } else {
                 tchilas = jewishCalendar.getTchilasZmanKidushLevana3Days();
             }
-            //
-            // this.localNotifications.schedule(this.createLocalNotification({
-            //     id: i,
-            //     text: this.translate.instant('BL_START_TIME').toString(),
-            //     trigger: {at: new Date(tchilas)},
-            // }));
-
 
             let sof;
             if (endBL === EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS) {
@@ -66,37 +68,23 @@ export class NotificationsService {
                 sof = jewishCalendar.getSofZmanKidushLevanaBetweenMoldos();
             }
 
-
-            // this.localNotifications.schedule(this.createLocalNotification({
-            //     id: i,
-            //     text: this.translate.instant('BL_END_TIME').toString(),
-            //     trigger: {at: new Date(sof)},
-            // }));
-
-            this.setNotification(moment(new Date(tchilas)), moment(new Date(sof)));/////////////
+            this.setNotification(moment(new Date(tchilas)), moment(new Date(sof)));
         }
 
     }
 
-    // private createLocalNotification(notification: ILocalNotification) {
-    //     return {
-    //         ...notification,
-    //         sound: null,
-    //         foreground: true,
-    //         priority: 2,
-    //     };
-    // }
-
     private setNotification(startMoment: Moment, end: Moment): void {
-        // console.log(startMoment); console.log(end);
         let start: Moment;
         for (let i = 0; i < end.diff(startMoment, 'days') + 1; i++) {
             start = startMoment.clone().add(i, 'd');
-            // console.log(start.weekday());
             if (start.weekday() === 5) { // friday
                 continue;
             }
-            // console.log(start.toDate());
+
+            if (this.isBeforeTishaBeab(start.toDate())) {
+                continue;
+            }
+
             const zmanim: any = this.zmanim4date(start.toDate()).BasicZmanim;
             const tzais: Moment = moment(zmanim.Tzais);
 
@@ -125,12 +113,23 @@ export class NotificationsService {
     private createBlNotification(date: Date): void {
         console.log(date);
         this.localNotifications.schedule({
-            // id: i,
+            id: new Date().getTime(),
             sound: null,
             foreground: true,
             priority: 2,
             text: this.translate.instant('REMINDER_TO_BIRCAT_HALEVANA').toString(),
             trigger: {at: date},
+            // trigger: {at: new Date(new Date().getTime() + 5000)},
+            actions: [{
+                id: GlobalVariables.ALREADY_SAID,
+                title: this.translate.instant('ALREADY_SAID').toString(),
+                launch: true
+            }]
         });
+    }
+
+    private isBeforeTishaBeab(date: Date): boolean {
+        const jewishCalendar = new JewishCalendar(date) as any;
+        return jewishCalendar.jewishMonth === 5 && jewishCalendar.jewishDay < 9;
     }
 }
