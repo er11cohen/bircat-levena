@@ -18,7 +18,7 @@ import {GlobalVariables} from '../shared/global/global-variables';
 export class NotificationsService {
 
     public settings: Settings;
-    private readonly months = 12;
+    private readonly months = 12; //////// 2
 
     constructor(
         private readonly localNotifications: LocalNotifications,
@@ -29,13 +29,28 @@ export class NotificationsService {
     }
 
     public async createBLNotifications(): Promise<void> {
+       // this.createBlNotification(null); return;
+
         const settings = this.settingsService.getSettings();
 
         await this.localNotifications.cancelAll();
         // @ts-ignore
         const launchDetails = (cordova.plugins as any)?.notification?.local?.launchDetails;
         let index = 0;
-        if (launchDetails?.action === GlobalVariables.ALREADY_SAID) {
+
+        const jewishSaidCalendar = new JewishCalendar(new Date()) as any;
+        const hebrewDate = `${jewishSaidCalendar.jewishYear}_${jewishSaidCalendar.jewishMonth}`;
+        const blSaidDate: Array<string> | null = await this.storage.get(GlobalVariables.BL_SAID_DATE);
+        let blSaidDateArr: Array<string> = blSaidDate ? blSaidDate : [];
+        if (blSaidDateArr.includes(hebrewDate)) {
+            index = 1;
+        } else if (launchDetails?.action === GlobalVariables.ALREADY_SAID) {
+            blSaidDateArr.push(hebrewDate);
+            // clear old years
+            blSaidDateArr = blSaidDateArr.filter((blDate: string) => {
+               return blDate.split('_')[0] !== (jewishSaidCalendar.jewishYear - 1).toString();
+            });
+            this.storage.set(GlobalVariables.BL_SAID_DATE, blSaidDateArr);
             index = 1;
         }
 
@@ -118,7 +133,7 @@ export class NotificationsService {
             foreground: true,
             priority: 2,
             text: this.translate.instant('REMINDER_TO_BIRCAT_HALEVANA').toString(),
-            trigger: {at: date},
+            trigger: {at: date}, /////
             // trigger: {at: new Date(new Date().getTime() + 5000)},
             actions: [{
                 id: GlobalVariables.ALREADY_SAID,
