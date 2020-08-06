@@ -2,7 +2,7 @@
 <widget id="com.eran.bircatlevana" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>תזכורת לברכת הלבנה</name>
     <description>אפלקציה לתזכורת לברכת הלבנה</description>
-    <content original-src="index.html" src="http://localhost:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -75,6 +75,7 @@
         <icon height="172" src="resources/ios/icon/icon-86@2x.png" width="172" />
         <icon height="196" src="resources/ios/icon/icon-98@2x.png" width="196" />
         <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
+        <icon height="216" src="resources/ios/icon/icon-108@2x.png" width="216" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
