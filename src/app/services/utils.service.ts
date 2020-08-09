@@ -29,6 +29,7 @@ export class UtilsService {
     }
 
     public async initialCoordinatesAndCreateBLNotifications(): Promise<void> {
+        await this.translate.get('BL_START_TIME').toPromise();
         await this.coordinatesService.initialCoordinates();
         await this.notificationsService.createBLNotifications();
     }

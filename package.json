@@ -25,6 +25,7 @@
     "@angular/router": "~9.1.9",
     "@ionic-native/core": "^5.26.0",
     "@ionic-native/device": "^5.26.0",
+    "@ionic-native/diagnostic": "^5.27.0",
     "@ionic-native/geolocation": "^5.26.0",
     "@ionic-native/local-notifications": "^5.26.0",
     "@ionic-native/splash-screen": "^5.26.0",
@@ -34,8 +35,7 @@
     "@ionic/storage": "^2.2.0",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
-    "cordova": "^9.0.0",
-    "cordova-android": "^8.1.0",
+    "cordova-plugin-androidx-adapter": "^1.1.1",
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-ionic-webview": "^5.0.0",
@@ -43,6 +43,7 @@
     "cordova-plugin-localization-strings": "^3.2.1",
     "cordova-plugin-x-toast": "^2.7.2",
     "cordova-sqlite-storage": "^5.0.0",
+    "cordova.plugins.diagnostic": "^6.0.2",
     "core-js": "^2.5.4",
     "kosher-zmanim": "^0.6.1",
     "moment": "^2.26.0",
@@ -60,11 +61,13 @@
     "@angular/compiler-cli": "~9.1.9",
     "@angular/language-service": "~9.1.9",
     "@ionic/angular-toolkit": "^2.2.0",
-    "@ionic/cli": "^6.10.0",
+    "@ionic/cli": "^6.11.0",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.2.2",
+    "cordova": "^10.0.0",
+    "cordova-android": "^9.0.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-splashscreen": "^5.0.4",
@@ -98,7 +101,11 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-localization-strings": {
         "TRANSLATION_PATH": "translations/app/"
-      }
+      },
+      "cordova.plugins.diagnostic": {
+        "ANDROIDX_VERSION": "1.+"
+      },
+      "cordova-plugin-androidx-adapter": {}
     },
     "platforms": [
       "android"

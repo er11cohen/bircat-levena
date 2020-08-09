@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ export function createTranslateLoader(http: HttpClient) {
     Geolocation,
     Device,
     Toast,
+    Diagnostic,
   ],
   bootstrap: [AppComponent]
 })

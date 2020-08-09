@@ -12,6 +12,7 @@ import {Languages} from './shared/enums';
 import {UtilsService} from './services/utils.service';
 import {Router} from '@angular/router';
 import { Location } from '@angular/common';
+import {GlobalVariables} from './shared/global/global-variables';
 
 @Component({
     selector: 'app-root',
@@ -93,7 +94,9 @@ export class AppComponent {
         this.platform.backButton.subscribeWithPriority(9999, async () => {
             const alert = await this.alertController.getTop();
             if (alert) {
-                alert.dismiss();
+                if (alert.id !== GlobalVariables.PREVENT_CLOSE_ALERT) {
+                    alert.dismiss();
+                }
                 return;
             }
 
