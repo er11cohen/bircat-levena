@@ -7,6 +7,7 @@ import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {Storage} from '@ionic/storage';
 import {Toast} from '@ionic-native/toast/ngx';
+import { CodePush, ILocalPackage } from '@ionic-native/code-push/ngx';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Languages} from './shared/enums';
 import {UtilsService} from './services/utils.service';
@@ -54,6 +55,7 @@ export class AppComponent {
         private router: Router,
         private location: Location,
         private toastCtrl: ToastController,
+        private codePush: CodePush,
     ) {
         this.initializeApp();
     }
@@ -61,14 +63,13 @@ export class AppComponent {
     async initializeApp() {
         await this.platform.ready();
 
-        // console.log(this.device);
-
         // this.statusBar.styleDefault();
         this.splashScreen.hide();
 
         this.setLanguage();
         this.backButtonEvent();
         this.utilsService.initialCoordinatesAndCreateBLNotifications();
+        this.updateCode();
     }
 
     private languageChangedSubscription(): void {
@@ -125,5 +126,27 @@ export class AppComponent {
             duration: 2000
         });
         toast.present();
+    }
+
+    private async updateCode(): Promise<void> {
+        this.codePush.sync().subscribe(
+            (syncStatus) => console.log('CODE PUSH SUCCESSFUL: ' + syncStatus),
+            (err) => console.log('CODE PUSH ERROR: ' + err)
+        );
+
+        if (this.utilsService.isIos()) {
+            return;
+        }
+
+        this.codePush.getCurrentPackage().then(async (update: ILocalPackage) => {
+            if (update && update.isFirstRun && update.description) {
+                const alert = await this.alertController.create({
+                    header: this.translate.instant('WHATS_NEW').toString(),
+                    message: update.description,
+                    buttons: [{text: this.translate.instant('GREAT').toString()}]
+                });
+                await alert.present();
+            }
+        });
     }
 }

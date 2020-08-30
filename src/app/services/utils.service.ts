@@ -20,6 +20,14 @@ export class UtilsService {
         return this.platform.is('cordova');
     }
 
+    public isAndroid() {
+        return this.isMobile() && this.platform.is('android');
+    }
+
+    public isIos() {
+        return this.isMobile() && this.platform.is('ios');
+    }
+
     public async initialData(): Promise<void> {
         // workaround to use after in 'this.translate.instant'
         await Promise.all([

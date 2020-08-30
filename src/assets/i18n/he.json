@@ -3,6 +3,7 @@
   "SIDE": "end",
   "SETTINGS": "הגדרות",
   "MENU": "תפריט",
+  "GREAT": "נהדר",
   "SAVE": "שמירה",
   "CANCEL": "ביטול",
   "NUSACH": "נוסח",
@@ -19,5 +20,6 @@
   "WELL_DONE_ON_BLESSING": "ישר כח צדיק על הברכה",
   "PRESS_AGAIN_TO_EXIT": "לחץ שוב ליציאה",
   "LOCATION_ACCESS": "צדיק כדי לחשב את ברכת הלבנה במיקומך אנא אשר הרשאת מיקום",
-  "HAPPILY": "בשמחה"
+  "HAPPILY": "בשמחה",
+  "WHATS_NEW": "מה חדש?"
 }
