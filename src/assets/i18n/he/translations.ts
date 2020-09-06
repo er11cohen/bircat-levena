@@ -25,7 +25,8 @@ const iwTranslationsDictionary: TranslationsDictionary = {
   HAPPILY: 'בשמחה',
   WHATS_NEW: 'מה חדש?',
   APP_SETTINGS: 'הגדרות אפליקציה',
-  NOTIFICATION: 'התראות'
+  NOTIFICATION: 'התראות',
+  LANGUAGE: 'שפה'
 };
 
 export default iwTranslationsDictionary;

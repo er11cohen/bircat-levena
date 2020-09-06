@@ -23,7 +23,8 @@ const enTranslationsDictionary = {
   HAPPILY: 'בשמחה',
   WHATS_NEW: 'What\'s new',
   APP_SETTINGS: 'הגדרות אפליקציה',
-  NOTIFICATION: 'Notification'
+  NOTIFICATION: 'Notification',
+  LANGUAGE: 'language'
 };
 
 export default enTranslationsDictionary;

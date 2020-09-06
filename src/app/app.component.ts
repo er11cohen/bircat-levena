@@ -87,11 +87,7 @@ export class AppComponent {
     private setLanguage() {
         this.languageChangedSubscription();
         this.translate.setDefaultLang(Languages.HE);
-        const language = Languages.HE;
-        // if (window.navigator.language.startsWith('en')) {
-        //     language = Languages.EN;
-        // }
-        this.translate.use(language);
+        this.translate.use(Languages.HE);
     }
 
     private backButtonEvent(): void {

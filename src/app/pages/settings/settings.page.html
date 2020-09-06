@@ -10,6 +10,27 @@
 <ion-content class="settings">
   <ion-list class="ion-no-padding">
     <ion-item-group>
+      <ion-item-divider color="light">{{ dict.NOTIFICATION | translate }}</ion-item-divider>
+      <ion-item lines="inset">
+        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ dict.BL_START_TIME | translate }}</ion-label>
+        <ion-select [(ngModel)]="settings.startBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
+                    okText="{{ dict.SAVE | translate }}">
+          <ion-select-option [value]="startBircatLevana.THREE">{{ dict._3_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
+          <ion-select-option [value]="startBircatLevana.SEVEN">{{ dict._7_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="inset">
+        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ dict.BL_END_TIME | translate }}</ion-label>
+        <ion-select [(ngModel)]="settings.endBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
+                    okText="{{ dict.SAVE | translate }}">
+          <ion-select-option [value]="endBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS">{{ dict._15_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
+          <ion-select-option [value]="endBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_BETWEEN_MOLDOS">{{ dict.BETWEEN_MOLDOS | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
       <ion-item-divider color="light">{{ dict.APP_SETTINGS | translate }}</ion-item-divider>
       <ion-item lines="inset">
         <ion-icon name="book" color="secondary"></ion-icon>
@@ -23,26 +44,16 @@
         </ion-select>
       </ion-item>
 
-      <ion-item-divider color="light">{{ dict.NOTIFICATION | translate }}</ion-item-divider>
       <ion-item lines="inset">
-        <ion-icon name="moon" color="secondary"></ion-icon>
-        <ion-label class="settings__label">{{ dict.BL_START_TIME | translate }}</ion-label>
-        <ion-select dir="rtl" [(ngModel)]="settings.startBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
+        <ion-icon name="language-outline" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ dict.LANGUAGE | translate }}</ion-label>
+        <ion-select [(ngModel)]="settings.language" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
                     okText="{{ dict.SAVE | translate }}">
-          <ion-select-option [value]="startBircatLevana.THREE">{{ dict._3_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
-          <ion-select-option [value]="startBircatLevana.SEVEN">{{ dict._7_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
+          <ion-select-option [value]="languages.HE">עברית</ion-select-option>
+          <ion-select-option [value]="languages.EN">English</ion-select-option>
         </ion-select>
       </ion-item>
 
-      <ion-item lines="inset">
-        <ion-icon name="moon" color="secondary"></ion-icon>
-        <ion-label class="settings__label">{{ dict.BL_END_TIME | translate }}</ion-label>
-        <ion-select dir="rtl" [(ngModel)]="settings.endBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
-                    okText="{{ dict.SAVE | translate }}">
-          <ion-select-option [value]="endBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS">{{ dict._15_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
-          <ion-select-option [value]="endBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_BETWEEN_MOLDOS">{{ dict.BETWEEN_MOLDOS | translate }}</ion-select-option>
-        </ion-select>
-      </ion-item>
     </ion-item-group>
   </ion-list>
 </ion-content>

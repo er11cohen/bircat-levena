@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {Settings} from '../models/settings';
 import {GlobalVariables} from '../shared/global/global-variables';
 import {Storage} from '@ionic/storage';
-import {EndBircatLevana, Nusach, StartBircatLevana} from '../shared/enums';
+import {EndBircatLevana, Languages, Nusach, StartBircatLevana} from '../shared/enums';
+import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,8 @@ export class SettingsService {
     private settings: Settings;
 
     constructor(
-        private readonly storage: Storage
+        private readonly storage: Storage,
+        public translate: TranslateService,
     ) {
     }
 
@@ -21,6 +23,7 @@ export class SettingsService {
             return;
         }
         this.settings = await this.storage.get(GlobalVariables.SETTINGS);
+        this.setLanguage(this.settings);
         const defaultSettings = {
             nusach: Nusach.EDOT_MIZRACH,
             startBircatLevana: StartBircatLevana.SEVEN,
@@ -43,6 +46,21 @@ export class SettingsService {
     public setSettings(settings: Settings): void {
         this.settings = settings;
         this.storage.set(GlobalVariables.SETTINGS, settings);
+
+        if (settings.language) {
+           this.setLanguage(settings);
+        }
+    }
+
+    private setLanguage(settings: Settings) {
+        if (!settings.language && window.navigator.language.startsWith('en')) {
+            this.translate.use(Languages.EN);
+            return;
+        }
+
+        if (settings.language) {
+            this.translate.use(settings.language);
+        }
     }
 }
 

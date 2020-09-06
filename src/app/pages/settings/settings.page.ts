@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../models/settings';
-import {EndBircatLevana, Nusach, StartBircatLevana} from '../../shared/enums';
+import {EndBircatLevana, Languages, Nusach, StartBircatLevana} from '../../shared/enums';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from '../../services/translations-dictionary';
 
 @Component({
@@ -14,6 +14,7 @@ export class SettingsPage implements OnInit {
     public nusach = Nusach;
     public startBircatLevana = StartBircatLevana;
     public endBircatLevana = EndBircatLevana;
+    public languages = Languages;
 
     constructor(private settingsService: SettingsService,
                 @Inject(TRANSLATIONS_DICTIONARY)
