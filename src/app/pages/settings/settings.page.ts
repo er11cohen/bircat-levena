@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../models/settings';
 import {EndBircatLevana, Nusach, StartBircatLevana} from '../../shared/enums';
+import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from '../../services/translations-dictionary';
 
 @Component({
     selector: 'app-settings',
@@ -14,7 +15,9 @@ export class SettingsPage implements OnInit {
     public startBircatLevana = StartBircatLevana;
     public endBircatLevana = EndBircatLevana;
 
-    constructor(private settingsService: SettingsService) {
+    constructor(private settingsService: SettingsService,
+                @Inject(TRANSLATIONS_DICTIONARY)
+                public readonly dict: TranslationsDictionary) {
     }
 
     ngOnInit() {

@@ -3,25 +3,30 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslationsDictionary} from './services/translations-dictionary';
+// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
-import { IonicStorageModule } from '@ionic/storage';
 
+import { IonicStorageModule } from '@ionic/storage';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Device } from '@ionic-native/device/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 import { CodePush } from '@ionic-native/code-push/ngx';
+import {from, Observable} from 'rxjs';
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export class WebpackTranslateLoader implements TranslateLoader {
+  public getTranslation(lang: string): Observable<TranslationsDictionary> {
+    return from(import(`../assets/i18n/${lang}.ts`).then((mod) => mod.default));
+  }
 }
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -36,8 +41,7 @@ export function createTranslateLoader(http: HttpClient) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient]
+        useClass: WebpackTranslateLoader,
       }
     })
   ],

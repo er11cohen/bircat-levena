@@ -1,6 +1,6 @@
 export enum Languages {
-    EN = 'en',
-    HE = 'he',
+    EN = 'en/translations',
+    HE = 'he/translations',
 }
 
 export enum StartBircatLevana {

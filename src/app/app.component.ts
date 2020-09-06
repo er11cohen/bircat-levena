@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 
 import {AlertController, Platform, ToastController} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
@@ -14,6 +14,7 @@ import {UtilsService} from './services/utils.service';
 import {Router} from '@angular/router';
 import { Location } from '@angular/common';
 import {GlobalVariables} from './shared/global/global-variables';
+import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './services/translations-dictionary';
 
 @Component({
     selector: 'app-root',
@@ -42,13 +43,15 @@ export class AppComponent {
     private closeCounter = 0;
 
     constructor(
+        @Inject(TRANSLATIONS_DICTIONARY)
+        public dict: TranslationsDictionary,
+        public translate: TranslateService,
         private platform: Platform,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private localNotifications: LocalNotifications,
         private geolocation: Geolocation,
         private storage: Storage,
-        public translate: TranslateService,
         private toast: Toast,
         private utilsService: UtilsService,
         private alertController: AlertController,
@@ -69,12 +72,12 @@ export class AppComponent {
         this.setLanguage();
         this.backButtonEvent();
         this.utilsService.initialCoordinatesAndCreateBLNotifications();
-        this.updateCode();
+      //  this.updateCode();
     }
 
     private languageChangedSubscription(): void {
         this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-            this.isRtl = event.lang === 'he';
+            this.isRtl = event.lang === Languages.HE;
             if (document && document.body) {
                 document.body.dir = event.translations.DIR;
             }
@@ -121,7 +124,7 @@ export class AppComponent {
 
         setTimeout(() => this.closeCounter = 0, 2000);
         const toast = await this.toastCtrl.create({
-            message:  this.translate.instant('PRESS_AGAIN_TO_EXIT').toString(),
+            message:  this.translate.instant(this.dict.PRESS_AGAIN_TO_EXIT).toString(),
             position: 'top',
             duration: 2000
         });
@@ -141,9 +144,9 @@ export class AppComponent {
         this.codePush.getCurrentPackage().then(async (update: ILocalPackage) => {
             if (update && update.isFirstRun && update.description) {
                 const alert = await this.alertController.create({
-                    header: this.translate.instant('WHATS_NEW').toString(),
+                    header: this.translate.instant(this.dict.WHATS_NEW).toString(),
                     message: update.description,
-                    buttons: [{text: this.translate.instant('GREAT').toString()}]
+                    buttons: [{text: this.translate.instant(this.dict.GREAT).toString()}]
                 });
                 await alert.present();
             }

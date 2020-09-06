@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Geolocation, Geoposition} from '@ionic-native/geolocation/ngx';
 import {Diagnostic} from '@ionic-native/diagnostic/ngx';
 import {GlobalVariables} from '../shared/global/global-variables';
@@ -6,6 +6,7 @@ import {Storage} from '@ionic/storage';
 import {BLCoordinates} from '../models/coordinates';
 import {AlertController} from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
+import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './translations-dictionary';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,9 @@ export class CoordinatesService {
         private readonly storage: Storage,
         private readonly diagnostic: Diagnostic,
         private readonly alertController: AlertController,
-        private readonly translate: TranslateService
+        private readonly translate: TranslateService,
+        @Inject(TRANSLATIONS_DICTIONARY)
+        public readonly dict: TranslationsDictionary,
     ) {
     }
 
@@ -47,12 +50,12 @@ export class CoordinatesService {
     private async showPermissionRequestPopup(): Promise<void> {
         const alert = await this.alertController.create({
             id: GlobalVariables.PREVENT_CLOSE_ALERT,
-            header: this.translate.instant('BIRCAT_HALEVANA').toString(),
+            header: this.translate.instant(this.dict.BIRCAT_HALEVANA).toString(),
             backdropDismiss: false,
-            message: this.translate.instant('LOCATION_ACCESS').toString(),
+            message: this.translate.instant(this.dict.LOCATION_ACCESS).toString(),
             buttons: [
                 {
-                    text: this.translate.instant('HAPPILY').toString(),
+                    text: this.translate.instant(this.dict.HAPPILY).toString(),
                     handler: async () => {
                         await this.getLocation();
                     }

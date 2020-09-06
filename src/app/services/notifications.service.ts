@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {EndBircatLevana, StartBircatLevana} from '../shared/enums';
 import {getZmanimJson, JewishCalendar, Options, /*HebrewDateFormatter, Daf*/} from 'kosher-zmanim';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
@@ -11,6 +11,7 @@ import {SettingsService} from './settings.service';
 import {Settings} from '../models/settings';
 import {CoordinatesService} from './coordinates.service';
 import {GlobalVariables} from '../shared/global/global-variables';
+import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './translations-dictionary';
 
 @Injectable({
     providedIn: 'root'
@@ -22,6 +23,8 @@ export class NotificationsService {
 
     constructor(
         private readonly localNotifications: LocalNotifications,
+        @Inject(TRANSLATIONS_DICTIONARY)
+        public readonly dict: TranslationsDictionary,
         private readonly translate: TranslateService,
         private readonly storage: Storage,
         private readonly settingsService: SettingsService,
@@ -132,12 +135,12 @@ export class NotificationsService {
             sound: null,
             foreground: true,
             priority: 2,
-            text: this.translate.instant('REMINDER_TO_BIRCAT_HALEVANA').toString(),
+            text: this.translate.instant(this.dict.REMINDER_TO_BIRCAT_HALEVANA).toString(),
             trigger: {at: date}, /////
             // trigger: {at: new Date(new Date().getTime() + 5000)},
             actions: [{
                 id: GlobalVariables.ALREADY_SAID,
-                title: this.translate.instant('ALREADY_SAID').toString(),
+                title: this.translate.instant(this.dict.ALREADY_SAID).toString(),
                 launch: true
             }]
         });
