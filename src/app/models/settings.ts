@@ -5,4 +5,5 @@ export interface Settings {
     startBircatLevana: StartBircatLevana;
     endBircatLevana: EndBircatLevana;
     language: Languages;
+    darkMode: boolean;
 }

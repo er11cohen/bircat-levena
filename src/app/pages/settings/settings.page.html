@@ -37,10 +37,10 @@
         <ion-label class="settings__label">{{ dict.NUSACH | translate }}</ion-label>
         <ion-select [(ngModel)]="settings.nusach" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
                     okText="{{ dict.SAVE | translate }}">
-          <ion-select-option [value]="nusach.SFARAD">ספרד</ion-select-option>
-          <ion-select-option [value]="nusach.ASKENAZ">אשכנז</ion-select-option>
-          <ion-select-option [value]="nusach.EDOT_MIZRACH">עדות המזרח</ion-select-option>
-          <ion-select-option [value]="nusach.TEIMAN">תימן</ion-select-option>
+          <ion-select-option [value]="nusach.SFARAD">{{ dict.SEFARD | translate }}</ion-select-option>
+          <ion-select-option [value]="nusach.ASKENAZ">{{ dict.ASHKENAZ | translate }}</ion-select-option>
+          <ion-select-option [value]="nusach.EDOT_MIZRACH">{{ dict.EDOT_HAMIZRACH | translate }}</ion-select-option>
+          <ion-select-option [value]="nusach.TEIMAN">{{ dict.TEMAN | translate }}</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -52,6 +52,12 @@
           <ion-select-option [value]="languages.HE">עברית</ion-select-option>
           <ion-select-option [value]="languages.EN">English</ion-select-option>
         </ion-select>
+      </ion-item>
+
+      <ion-item lines="inset">
+        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-label class="settings__label" (click)="darkModeToggle.checked = !darkModeToggle.checked">{{ dict.DARK_MODE | translate }}</ion-label>
+        <ion-toggle #darkModeToggle [(ngModel)]="settings.darkMode" (ionChange)="setSettings()"></ion-toggle>
       </ion-item>
 
     </ion-item-group>

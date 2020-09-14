@@ -23,12 +23,13 @@ export class SettingsService {
             return;
         }
         this.settings = await this.storage.get(GlobalVariables.SETTINGS);
-        this.setLanguage(this.settings);
         const defaultSettings = {
             nusach: Nusach.EDOT_MIZRACH,
             startBircatLevana: StartBircatLevana.SEVEN,
             endBircatLevana: EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_BETWEEN_MOLDOS,
+            darkMode: false,
         } as Settings;
+
         if (!this.settings) {
             this.settings = defaultSettings;
         } else {
@@ -37,6 +38,8 @@ export class SettingsService {
                 ...this.settings
             };
         }
+
+        this.setAppChanges(this.settings);
     }
 
     public getSettings(): Settings {
@@ -46,21 +49,20 @@ export class SettingsService {
     public setSettings(settings: Settings): void {
         this.settings = settings;
         this.storage.set(GlobalVariables.SETTINGS, settings);
-
-        if (settings.language) {
-           this.setLanguage(settings);
-        }
+        this.setAppChanges(settings);
     }
 
-    private setLanguage(settings: Settings) {
+    private setAppChanges(settings: Settings) {
         if (!settings.language && window.navigator.language.startsWith('en')) {
             this.translate.use(Languages.EN);
-            return;
         }
 
         if (settings.language) {
             this.translate.use(settings.language);
         }
+
+        // set dark mode
+        document.body.classList.toggle('dark', settings.darkMode);
     }
 }
 

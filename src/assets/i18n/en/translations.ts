@@ -6,7 +6,11 @@ const enTranslationsDictionary = {
   GREAT: 'Great',
   SAVE: 'Save',
   CANCEL: 'Cancel',
-  NUSACH: 'נוסח',
+  NUSACH: 'Nusach',
+  EDOT_HAMIZRACH: 'Edot Hamizrach',
+  SEFARD: 'Sefard',
+  ASHKENAZ: 'Ashkenaz',
+  TEMAN: 'Teman',
   BIRCAT_HALEVANA: 'Bircat HaLevana',
   REMINDER_TO_BIRCAT_HALEVANA: 'Reminder to bircat halevana',
   BL_START_TIME: 'תחילת זמן ברכת הלבנה',
@@ -24,7 +28,8 @@ const enTranslationsDictionary = {
   WHATS_NEW: 'What\'s new',
   APP_SETTINGS: 'הגדרות אפליקציה',
   NOTIFICATION: 'Notification',
-  LANGUAGE: 'language'
+  LANGUAGE: 'Language',
+  DARK_MODE: 'Dark mode'
 };
 
 export default enTranslationsDictionary;

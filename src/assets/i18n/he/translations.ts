@@ -9,6 +9,10 @@ const iwTranslationsDictionary: TranslationsDictionary = {
   SAVE: 'שמירה',
   CANCEL: 'ביטול',
   NUSACH: 'נוסח',
+  EDOT_HAMIZRACH: 'עדות המזרח',
+  SEFARD: 'ספרד',
+  ASHKENAZ: 'אשכנז',
+  TEMAN: 'תימן',
   BIRCAT_HALEVANA: 'ברכת הלבנה',
   REMINDER_TO_BIRCAT_HALEVANA: 'תזכורת לברכת הלבנה',
   BL_START_TIME: 'תחילת זמן ברכת הלבנה',
@@ -26,7 +30,8 @@ const iwTranslationsDictionary: TranslationsDictionary = {
   WHATS_NEW: 'מה חדש?',
   APP_SETTINGS: 'הגדרות אפליקציה',
   NOTIFICATION: 'התראות',
-  LANGUAGE: 'שפה'
+  LANGUAGE: 'שפה',
+  DARK_MODE: 'מצב לילה'
 };
 
 export default iwTranslationsDictionary;
