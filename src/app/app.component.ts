@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 
-import {AlertController, Platform, ToastController} from '@ionic/angular';
+import {AlertController, MenuController, Platform, ToastController} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
@@ -59,6 +59,7 @@ export class AppComponent {
         private location: Location,
         private toastCtrl: ToastController,
         private codePush: CodePush,
+        private menu: MenuController,
     ) {
         this.initializeApp();
     }
@@ -92,6 +93,11 @@ export class AppComponent {
 
     private backButtonEvent(): void {
         this.platform.backButton.subscribeWithPriority(9999, async () => {
+            if (await this.menu.isOpen()) {
+                this.menu.close();
+                return;
+            }
+
             const alert = await this.alertController.getTop();
             if (alert) {
                 if (alert.id !== GlobalVariables.PREVENT_CLOSE_ALERT) {
