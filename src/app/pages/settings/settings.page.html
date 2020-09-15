@@ -60,6 +60,24 @@
         <ion-toggle #darkModeToggle [(ngModel)]="settings.darkMode" (ionChange)="setSettings()"></ion-toggle>
       </ion-item>
 
+      <ion-item lines="inset">
+        <ion-icon name="language-outline" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ dict.FONT_SIZE | translate }}</ion-label>
+        <ion-select [(ngModel)]="settings.fontSize" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
+                    okText="{{ dict.SAVE | translate }}">
+          <ion-select-option [value]="fontSize.S">{{ dict.SMALL | translate }}</ion-select-option>
+          <ion-select-option [value]="fontSize.M">{{ dict.MEDIUM | translate }}</ion-select-option>
+          <ion-select-option [value]="fontSize.L">{{ dict.LARGE | translate }}</ion-select-option>
+          <ion-select-option [value]="fontSize.XL">{{ dict.XLARGE | translate }}</ion-select-option>
+          <ion-select-option [value]="fontSize.XXL">{{ dict.XXLARGE | translate }}</ion-select-option>
+          <ion-select-option [value]="fontSize.XXXL">{{ dict.XXXLARGE | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div class="settings__text-to-show">
+        {{ dict.TEXT_TO_SHOW | translate }}
+      </div>
+
     </ion-item-group>
   </ion-list>
 </ion-content>

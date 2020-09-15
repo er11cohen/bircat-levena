@@ -6,4 +6,5 @@ export interface Settings {
     endBircatLevana: EndBircatLevana;
     language: Languages;
     darkMode: boolean;
+    fontSize: string;
 }

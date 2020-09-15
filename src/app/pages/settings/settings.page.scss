@@ -2,4 +2,12 @@
   &__label {
     padding-inline-start: 15px;
   }
+
+  &__text-to-show {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px black solid;
+  }
 }

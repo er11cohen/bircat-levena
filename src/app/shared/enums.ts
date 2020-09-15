@@ -17,5 +17,14 @@ export enum Nusach {
     SFARAD = 'SFARAD',
     ASKENAZ = 'ASKENAZ',
     EDOT_MIZRACH = 'EDOT_MIZRACH',
-    TEIMAN = 'TEIMAN'
+    TEIMAN = 'TEIMAN',
+}
+
+export enum FontSize {
+    S = '14px',
+    M = '16px',
+    L = '18px',
+    XL = '21px',
+    XXL = '24px',
+    XXXL = '27px',
 }

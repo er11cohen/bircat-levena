@@ -31,7 +31,15 @@ const iwTranslationsDictionary: TranslationsDictionary = {
   APP_SETTINGS: 'הגדרות אפליקציה',
   NOTIFICATION: 'התראות',
   LANGUAGE: 'שפה',
-  DARK_MODE: 'מצב לילה'
+  DARK_MODE: 'מצב לילה',
+  TEXT_TO_SHOW: 'כך יראה הטקסט',
+  FONT_SIZE: 'גודל פונט',
+  SMALL: 'קטן',
+  MEDIUM: 'בינוני',
+  LARGE: 'גדול',
+  XLARGE: 'גדול מאוד',
+  XXLARGE: 'גדול מאוד מאוד',
+  XXXLARGE: 'ענק',
 };
 
 export default iwTranslationsDictionary;

@@ -29,7 +29,15 @@ const enTranslationsDictionary = {
   APP_SETTINGS: 'הגדרות אפליקציה',
   NOTIFICATION: 'Notification',
   LANGUAGE: 'Language',
-  DARK_MODE: 'Dark mode'
+  DARK_MODE: 'Dark mode',
+  TEXT_TO_SHOW: 'כך יראה הטקסט',
+  FONT_SIZE: 'Font size',
+  SMALL: 'Small',
+  MEDIUM: 'Medium',
+  LARGE: 'Large',
+  XLARGE: 'XLarge',
+  XXLARGE: 'XXLarge',
+  XXXLARGE: 'XXXLarge',
 };
 
 export default enTranslationsDictionary;

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Settings} from '../models/settings';
 import {GlobalVariables} from '../shared/global/global-variables';
 import {Storage} from '@ionic/storage';
-import {EndBircatLevana, Languages, Nusach, StartBircatLevana} from '../shared/enums';
+import {EndBircatLevana, FontSize, Languages, Nusach, StartBircatLevana} from '../shared/enums';
 import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
@@ -28,6 +28,7 @@ export class SettingsService {
             startBircatLevana: StartBircatLevana.SEVEN,
             endBircatLevana: EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_BETWEEN_MOLDOS,
             darkMode: false,
+            fontSize: FontSize.M,
         } as Settings;
 
         if (!this.settings) {
@@ -63,6 +64,8 @@ export class SettingsService {
 
         // set dark mode
         document.body.classList.toggle('dark', settings.darkMode);
+
+        document.documentElement.style.fontSize = settings.fontSize;
     }
 }
 
