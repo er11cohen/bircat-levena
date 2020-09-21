@@ -4,7 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslationsDictionary} from './services/translations-dictionary';
-// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { Market } from '@ionic-native/market/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { AppComponent } from './app.component';
@@ -55,6 +56,8 @@ export class WebpackTranslateLoader implements TranslateLoader {
     Toast,
     Diagnostic,
     CodePush,
+    SocialSharing,
+    Market,
   ],
   bootstrap: [AppComponent]
 })

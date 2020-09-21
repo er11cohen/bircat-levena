@@ -11,7 +11,7 @@
   <ion-list class="ion-no-padding">
     <ion-item-group>
       <ion-item-divider color="light">{{ dict.NOTIFICATION | translate }}</ion-item-divider>
-      <ion-item lines="inset">
+      <ion-item>
         <ion-icon name="moon" color="secondary"></ion-icon>
         <ion-label class="settings__label">{{ dict.BL_START_TIME | translate }}</ion-label>
         <ion-select [(ngModel)]="settings.startBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
@@ -21,7 +21,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-item lines="inset">
+      <ion-item>
         <ion-icon name="moon" color="secondary"></ion-icon>
         <ion-label class="settings__label">{{ dict.BL_END_TIME | translate }}</ion-label>
         <ion-select [(ngModel)]="settings.endBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
@@ -32,7 +32,7 @@
       </ion-item>
 
       <ion-item-divider color="light">{{ dict.APP_SETTINGS | translate }}</ion-item-divider>
-      <ion-item lines="inset">
+      <ion-item>
         <ion-icon name="book" color="secondary"></ion-icon>
         <ion-label class="settings__label">{{ dict.NUSACH | translate }}</ion-label>
         <ion-select [(ngModel)]="settings.nusach" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
@@ -44,7 +44,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-item lines="inset">
+      <ion-item>
         <ion-icon name="language-outline" color="secondary"></ion-icon>
         <ion-label class="settings__label">{{ dict.LANGUAGE | translate }}</ion-label>
         <ion-select [(ngModel)]="settings.language" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
@@ -54,13 +54,13 @@
         </ion-select>
       </ion-item>
 
-      <ion-item lines="inset">
+      <ion-item lines="full">
         <ion-icon name="moon" color="secondary"></ion-icon>
         <ion-label class="settings__label" (click)="darkModeToggle.checked = !darkModeToggle.checked">{{ dict.DARK_MODE | translate }}</ion-label>
         <ion-toggle #darkModeToggle [(ngModel)]="settings.darkMode" (ionChange)="setSettings()"></ion-toggle>
       </ion-item>
 
-      <ion-item lines="inset">
+      <ion-item>
         <ion-icon name="language-outline" color="secondary"></ion-icon>
         <ion-label class="settings__label">{{ dict.FONT_SIZE | translate }}</ion-label>
         <ion-select [(ngModel)]="settings.fontSize" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"

@@ -67,7 +67,7 @@ export class AppComponent {
     async initializeApp() {
         await this.platform.ready();
 
-        // this.statusBar.styleDefault();
+        this.statusBar.backgroundColorByHexString('427ebb');
         this.splashScreen.hide();
 
         this.setLanguage();
