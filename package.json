@@ -10,9 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ral": "npx ionic cordova run android -l",
-    "ra": "npx ionic cordova run android",
-    "ba": "npx ionic cordova build android"
+    "ral": "npx ionic cordova run android -l --target=ad05160238cd5e93e1",
+    "ra": "npx ionic cordova run android --target=ad05160238cd5e93e1",
+    "ba": "npx ionic cordova build android --target=ad05160238cd5e93e1"
   },
   "private": true,
   "dependencies": {
