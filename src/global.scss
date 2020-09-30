@@ -35,7 +35,7 @@ ion-alert {
 }
 
 ion-toolbar {
-  --background: linear-gradient(90deg, #013f7d, #427ebb);
+  --background: linear-gradient(90deg, #013f7d, var(--blue-color));
   --color: white;
 }
 

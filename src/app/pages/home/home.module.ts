@@ -4,6 +4,8 @@ import {HomePage} from './home.page';
 import {SharedModule} from '../../shared/shared.module';
 import {EdotMizrachComponent} from './edot-mizrach/edot-mizrach.component';
 import {AskenazComponent} from './askenaz/askenaz.component';
+import {SfardComponent} from './sfard/sfard.component';
+import {TeimanComponent} from './teiman/teiman.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {AskenazComponent} from './askenaz/askenaz.component';
     declarations: [
         HomePage,
         EdotMizrachComponent,
-        AskenazComponent
+        AskenazComponent,
+        SfardComponent,
+        TeimanComponent
     ]
 })
 export class HomePageModule {
