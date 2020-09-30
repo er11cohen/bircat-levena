@@ -37,7 +37,6 @@ const enTranslationsDictionary = {
   LARGE: 'Large',
   XLARGE: 'XLarge',
   XXLARGE: 'XXLarge',
-  XXXLARGE: 'XXXLarge',
   SHARE_APP: 'Bircat HaLevana https://play.google.com/store/apps/details?id=com.eran.bircatlevana',
   OPEN_STORE: 'צדיק אהבת את האפלקציה? דרג אותנו 5 כוכבים וטול חלק בזיכוי הרבים.'
 };

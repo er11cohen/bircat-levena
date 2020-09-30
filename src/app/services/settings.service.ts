@@ -28,7 +28,7 @@ export class SettingsService {
             startBircatLevana: StartBircatLevana.SEVEN,
             endBircatLevana: EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_BETWEEN_MOLDOS,
             darkMode: false,
-            fontSize: FontSize.M,
+            fontSize: FontSize.L,
         } as Settings;
 
         if (!this.settings) {

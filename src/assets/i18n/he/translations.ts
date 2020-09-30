@@ -38,8 +38,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
   MEDIUM: 'בינוני',
   LARGE: 'גדול',
   XLARGE: 'גדול מאוד',
-  XXLARGE: 'גדול מאוד מאוד',
-  XXXLARGE: 'ענק',
+  XXLARGE: 'ענק',
   SHARE_APP: 'https://play.google.com/store/apps/details?id=com.eran.bircatlevana ברכת הלבנה',
   OPEN_STORE: 'צדיק אהבת את האפלקציה? דרג אותנו 5 כוכבים וטול חלק בזיכוי הרבים.'
 };

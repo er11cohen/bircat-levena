@@ -21,10 +21,9 @@ export enum Nusach {
 }
 
 export enum FontSize {
-    S = '14px',
-    M = '16px',
-    L = '18px',
-    XL = '21px',
-    XXL = '24px',
-    XXXL = '27px',
+    S = '16px',
+    M = '18px',
+    L = '20px',
+    XL = '23px',
+    XXL = '27px',
 }
