@@ -1,7 +1,7 @@
 {
   "config_ios": {
     "CFBundleDisplayName": "Bircat HaLevana Reminder",
-    "NSLocationWhenInUseUsageDescription": "For Calculate the Bircat Levane in your location, access to the device location is required."
+    "NSLocationWhenInUseUsageDescription": "For Calculate the Bircat HaLevane in your location, access to the device location is required."
   },
   "config_android": {
     "app_name": "Bircat HaLevana Reminder"

@@ -2,7 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../models/settings';
 import {Nusach} from '../../shared/enums';
-import {GlobalVariables} from '../../shared/global/global-variables';
 import {AlertController} from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
 import {SocialSharing} from '@ionic-native/social-sharing/ngx';
@@ -10,6 +9,7 @@ import {Market} from '@ionic-native/market/ngx';
 import {Toast} from '@ionic-native/toast/ngx';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from '../../services/translations-dictionary';
 import {UtilsService} from '../../services/utils.service';
+import {GlobalVariables} from '../../shared/global/global-variables';
 
 @Component({
     selector: 'app-home',
@@ -33,48 +33,28 @@ export class HomePage implements OnInit {
 
     async ngOnInit() {
         this.settings = this.settingsService.getSettings();
-
-        // @ts-ignore
-        const launchDetails = (cordova.plugins as any)?.notification?.local?.launchDetails;
-        if (launchDetails?.action === GlobalVariables.ALREADY_SAID) {
-            const alert = await this.alertController.create({
-                // cssClass: 'my-custom-class',
-                header: this.translate.instant(this.dict.BIRCAT_HALEVANA).toString(),
-                // subHeader: 'Subtitle',
-                message: this.translate.instant(this.dict.WELL_DONE_ON_BLESSING).toString(),
-                buttons: [
-                    // {
-                    //     text: 'Cancel',
-                    //     handler: () => {
-                    //     }
-                    // },
-                    {
-                        text: this.translate.instant(this.dict.MEET_NEXT_MONTH).toString(),
-                    }
-                ]
-            });
-
-            await alert.present();
-        }
     }
 
     public shareApp(): void {
+        let share = this.translate.instant(this.dict.SHARE_APP).toString() + ' ';
         if (this.utilsService.isAndroid()) {
-            this.socialSharing.share(this.translate.instant(this.dict.SHARE_APP).toString());
+            share += GlobalVariables.LINK_BL_APP_IN_STORE_ANDROID;
         }
+
+        this.socialSharing.share(share);
     }
 
     public openStore(): void {
-        if (this.utilsService.isAndroid()) {
             this.toast.show(this.translate.instant(this.dict.OPEN_STORE).toString(),
                 '3000', 'top').subscribe(
                 toast => {
                     if (toast.event === 'hide') {
-                        this.market.open('com.eran.bircatlevana');
+                        if (this.utilsService.isAndroid()) {
+                            this.market.open('com.eran.bircatlevana');
+                        }
                     }
                 }
             );
         }
-    }
 
 }

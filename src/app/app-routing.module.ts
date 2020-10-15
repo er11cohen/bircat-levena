@@ -14,8 +14,8 @@ const routes: Routes = [
         canActivate: [DataReadyGuard],
     },
     {
-        path: 'list',
-        loadChildren: () => import('./pages/list/list.module').then(m => m.ListPageModule),
+        path: 'about',
+        loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule),
         canActivate: [DataReadyGuard],
     },
     {

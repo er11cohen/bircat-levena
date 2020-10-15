@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            {{ dict.ABOUT_TITLE | translate}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <p class="gemara">
+        תָּנָא דְבֵי רַבִּי יִשְׁמָעֵאל אִלְמָלֵי לא זָכוּ יִשְׂרָאֵל אֶלָּא לְהַקְבִּיל פְּנֵי אֲבִיהֶם שֶׁבַּשָׁמַיִם
+        פַּעַם אַחַת בַּחדֶשׁ דַּיָם. אָמַר אַבַּיֵי הִלְכָּךְ צָרִיךְ לְמֵימְרָא מְעוּמָד:
+        וא"ר אחא בר חנינא א"ר אסי א"ר יוחנן כל המברך על החודש בזמנו כאילו מקבל פני שכינה.
+        סנהדרין מב ע"א
+    </p>
+    <p>
+        <span>{{ dict.ABOUT.AGAIN_CLOUDY | translate}}</span>
+        <span>{{ dict.ABOUT.AGAIN_PASS_WEEK | translate}}</span>
+        <span>{{ dict.ABOUT.NO_FROM_TODAY | translate}}</span>
+    </p>
+    <p>
+        {{ dict.ABOUT.APP_CREATED_BY | translate}}
+        <span [innerHTML]="rank"></span>
+    </p>
+
+    <p *ngIf="utilsService.isAndroid()">
+        <span style="font-weight: bold;">{{ dict.ABOUT.LOVE_APP | translate}}</span>
+        <span [innerHTML]="moreApps"></span>
+    </p>
+    <p>{{ dict.ABOUT.LEILUI_NISHMAT | translate}}</p>
+    <p [innerHTML]="contact"></p>
+</ion-content>

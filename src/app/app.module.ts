@@ -13,6 +13,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { Market } from '@ionic-native/market/ngx';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { AppComponent } from './app.component';
@@ -58,6 +59,7 @@ export class WebpackTranslateLoader implements TranslateLoader {
     CodePush,
     SocialSharing,
     Market,
+    AppVersion,
   ],
   bootstrap: [AppComponent]
 })

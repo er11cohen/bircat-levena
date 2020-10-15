@@ -30,8 +30,8 @@ export class AppComponent {
             icon: 'home'
         },
         {
-            title: 'List',
-            url: '/list',
+            title: 'ABOUT_TITLE',
+            url: '/about',
             icon: 'list'
         },
         {
@@ -74,6 +74,29 @@ export class AppComponent {
         this.backButtonEvent();
         this.utilsService.initialCoordinatesAndCreateBLNotifications();
       //  this.updateCode();
+
+        // @ts-ignore
+        const launchDetails = (cordova.plugins as any)?.notification?.local?.launchDetails;
+        if (launchDetails?.action === GlobalVariables.ALREADY_SAID) {
+            const alert = await this.alertController.create({
+                // cssClass: 'my-custom-class',
+                header: this.translate.instant(this.dict.BIRCAT_HALEVANA).toString(),
+                // subHeader: 'Subtitle',
+                message: this.translate.instant(this.dict.WELL_DONE_ON_BLESSING).toString(),
+                buttons: [
+                    // {
+                    //     text: 'Cancel',
+                    //     handler: () => {
+                    //     }
+                    // },
+                    {
+                        text: this.translate.instant(this.dict.MEET_NEXT_MONTH).toString(),
+                    }
+                ]
+            });
+
+            await alert.present();
+        }
     }
 
     private languageChangedSubscription(): void {

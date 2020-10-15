@@ -23,6 +23,7 @@
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
+    "@ionic-native/app-version": "^5.28.0",
     "@ionic-native/code-push": "^5.28.0",
     "@ionic-native/core": "^5.26.0",
     "@ionic-native/device": "^5.26.0",
@@ -73,6 +74,7 @@
     "cordova": "^10.0.0",
     "cordova-android": "^9.0.0",
     "cordova-plugin-advanced-http": "^3.0.1",
+    "cordova-plugin-app-version": "^0.1.9",
     "cordova-plugin-code-push": "^1.13.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-dialogs": "^2.0.2",
@@ -120,7 +122,8 @@
       "cordova-plugin-androidx-adapter": {},
       "cordova-plugin-code-push": {},
       "cordova-plugin-x-socialsharing": {},
-      "cordova-plugin-market": {}
+      "cordova-plugin-market": {},
+      "cordova-plugin-app-version": {}
     },
     "platforms": [
       "android"
