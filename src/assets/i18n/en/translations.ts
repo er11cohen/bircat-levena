@@ -19,7 +19,9 @@ const enTranslationsDictionary = {
   _15_DAYS_AFTER_MOLAD: '15 days after the Molad',
   BETWEEN_MOLDOS: 'In middle between Molad to Molad',
   BL_END_TIME: 'End time for Bircat HaLevana',
-  ALREADY_SAID: 'Already blessed',
+  ALREADY_BLESSED: 'Already blessed',
+  TZADIK_ALREADY_BLESSED: 'Tzadik already blessed?',
+  BLESSED: 'Blessed',
   MEET_NEXT_MONTH: 'See you next month',
   WELL_DONE_ON_BLESSING: 'Well done Tzadik',
   PRESS_AGAIN_TO_EXIT: 'Press again for Exit',
@@ -52,7 +54,7 @@ const enTranslationsDictionary = {
     MORE_APP: 'More of my apps',
     ENCOUNTER_PROBLEM: 'If you encounter any problem',
     CONTACT_ME: 'Contact me',
-  }
+  },
 };
 
 export default enTranslationsDictionary;

@@ -21,7 +21,9 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     _15_DAYS_AFTER_MOLAD: '15 ימים אחרי המולד',
     BETWEEN_MOLDOS: 'באמצע בין מולד למולד',
     BL_END_TIME: 'סוף זמן ברכת הלבנה',
-    ALREADY_SAID: 'כבר ברכתי',
+    ALREADY_BLESSED: 'כבר ברכתי',
+    TZADIK_ALREADY_BLESSED: 'צדיק כבר ברכת?',
+    BLESSED: 'ברכתי',
     MEET_NEXT_MONTH: 'נפגש בחודש הבא',
     WELL_DONE_ON_BLESSING: 'ישר כח צדיק על הברכה',
     PRESS_AGAIN_TO_EXIT: 'לחץ שוב ליציאה',
@@ -54,7 +56,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
         MORE_APP: 'עוד אפלקציות שלי',
         ENCOUNTER_PROBLEM: 'אם נתקלת בבעיה',
         CONTACT_ME: 'צור קשר',
-    }
+    },
 };
 
 export default iwTranslationsDictionary;

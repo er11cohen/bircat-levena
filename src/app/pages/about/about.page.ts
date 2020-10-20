@@ -3,8 +3,8 @@ import {TranslateService} from '@ngx-translate/core';
 import {Device} from '@ionic-native/device/ngx';
 import {AppVersion} from '@ionic-native/app-version/ngx';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from '../../services/translations-dictionary';
-import {UtilsService} from '../../services/utils.service';
 import {GlobalVariables} from '../../shared/global/global-variables';
+import {PlatformsService} from '../../services/platforms.service';
 
 @Component({
     selector: 'app-about',
@@ -19,7 +19,7 @@ export class AboutPage implements OnInit {
         @Inject(TRANSLATIONS_DICTIONARY)
         public dict: TranslationsDictionary,
         public translate: TranslateService,
-        private utilsService: UtilsService,
+        private platformsService: PlatformsService,
         private  device: Device,
         private appVersion: AppVersion) {
 
@@ -36,7 +36,7 @@ export class AboutPage implements OnInit {
             ' <a href="0">' +
             this.translate.instant(this.dict.ABOUT.AND_RANK) +
             '</a>.';
-        if (this.utilsService.isAndroid()) {
+        if (this.platformsService.isAndroid()) {
             text = text.replace('0', GlobalVariables.LINK_BL_APP_IN_STORE_ANDROID);
         }
         return text;

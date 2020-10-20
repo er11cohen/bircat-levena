@@ -7,14 +7,15 @@ import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {Storage} from '@ionic/storage';
 import {Toast} from '@ionic-native/toast/ngx';
-import { CodePush, ILocalPackage } from '@ionic-native/code-push/ngx';
+import {CodePush, ILocalPackage} from '@ionic-native/code-push/ngx';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Languages} from './shared/enums';
 import {UtilsService} from './services/utils.service';
 import {Router} from '@angular/router';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 import {GlobalVariables} from './shared/global/global-variables';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './services/translations-dictionary';
+import {PlatformsService} from './services/platforms.service';
 
 @Component({
     selector: 'app-root',
@@ -60,6 +61,7 @@ export class AppComponent {
         private toastCtrl: ToastController,
         private codePush: CodePush,
         private menu: MenuController,
+        private platformsService: PlatformsService,
     ) {
         this.initializeApp();
     }
@@ -73,29 +75,12 @@ export class AppComponent {
         this.setLanguage();
         this.backButtonEvent();
         this.utilsService.initialCoordinatesAndCreateBLNotifications();
-      //  this.updateCode();
+        //  this.updateCode();
 
         // @ts-ignore
         const launchDetails = (cordova.plugins as any)?.notification?.local?.launchDetails;
-        if (launchDetails?.action === GlobalVariables.ALREADY_SAID) {
-            const alert = await this.alertController.create({
-                // cssClass: 'my-custom-class',
-                header: this.translate.instant(this.dict.BIRCAT_HALEVANA).toString(),
-                // subHeader: 'Subtitle',
-                message: this.translate.instant(this.dict.WELL_DONE_ON_BLESSING).toString(),
-                buttons: [
-                    // {
-                    //     text: 'Cancel',
-                    //     handler: () => {
-                    //     }
-                    // },
-                    {
-                        text: this.translate.instant(this.dict.MEET_NEXT_MONTH).toString(),
-                    }
-                ]
-            });
-
-            await alert.present();
+        if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED) {
+            this.utilsService.openNextMonthModal();
         }
     }
 
@@ -149,7 +134,7 @@ export class AppComponent {
 
         setTimeout(() => this.closeCounter = 0, 2000);
         const toast = await this.toastCtrl.create({
-            message:  this.translate.instant(this.dict.PRESS_AGAIN_TO_EXIT).toString(),
+            message: this.translate.instant(this.dict.PRESS_AGAIN_TO_EXIT).toString(),
             position: 'top',
             duration: 2000
         });
@@ -162,7 +147,7 @@ export class AppComponent {
             (err) => console.log('CODE PUSH ERROR: ' + err)
         );
 
-        if (this.utilsService.isIos()) {
+        if (this.platformsService.isIos()) {
             return;
         }
 

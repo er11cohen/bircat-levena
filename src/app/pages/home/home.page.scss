@@ -1,6 +1,7 @@
 ion-title {
   padding-inline-end: 10px;
 }
+
 .title {
   display: flex;
   justify-content: space-between;
@@ -31,3 +32,20 @@ ion-title {
 ion-content {
   direction: rtl;
 }
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+
+  ion-button {
+    margin-bottom: 10px;
+    --background: var(--blue-color);
+    font-size: large;
+
+    ion-icon {
+      --ion-color-base: white !important;
+      font-size: x-large;
+    }
+  }
+}
+

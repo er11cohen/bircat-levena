@@ -12,6 +12,7 @@ import {Settings} from '../models/settings';
 import {CoordinatesService} from './coordinates.service';
 import {GlobalVariables} from '../shared/global/global-variables';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './translations-dictionary';
+import {PlatformsService} from './platforms.service';
 
 @Injectable({
     providedIn: 'root'
@@ -28,11 +29,11 @@ export class NotificationsService {
         private readonly translate: TranslateService,
         private readonly storage: Storage,
         private readonly settingsService: SettingsService,
-        private readonly coordinatesService: CoordinatesService) {
+        private readonly coordinatesService: CoordinatesService,
+        private readonly platformsService: PlatformsService) {
     }
 
-    public async createBLNotifications(): Promise<void> {
-       // this.createBlNotification(null); return;
+    public async createBLNotifications(alreadyBlessed: boolean): Promise<void> {
 
         const settings = this.settingsService.getSettings();
 
@@ -42,16 +43,17 @@ export class NotificationsService {
         let index = 0;
 
         const jewishSaidCalendar = new JewishCalendar(new Date()) as any;
-        const hebrewDate = `${jewishSaidCalendar.jewishYear}_${jewishSaidCalendar.jewishMonth}`;
+        const hebrewDate = this.getHebrewSaidFormat(jewishSaidCalendar);
         const blSaidDate: Array<string> | null = await this.storage.get(GlobalVariables.BL_SAID_DATE);
         let blSaidDateArr: Array<string> = blSaidDate ? blSaidDate : [];
         if (blSaidDateArr.includes(hebrewDate)) {
             index = 1;
-        } else if (launchDetails?.action === GlobalVariables.ALREADY_SAID) {
+        } else if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED
+            || alreadyBlessed) {
             blSaidDateArr.push(hebrewDate);
             // clear old years
             blSaidDateArr = blSaidDateArr.filter((blDate: string) => {
-               return blDate.split('_')[0] !== (jewishSaidCalendar.jewishYear - 1).toString();
+                return blDate.split('_')[0] !== (jewishSaidCalendar.jewishYear - 1).toString();
             });
             this.storage.set(GlobalVariables.BL_SAID_DATE, blSaidDateArr);
             index = 1;
@@ -89,6 +91,17 @@ export class NotificationsService {
             this.setNotification(moment(new Date(tchilas)), moment(new Date(sof)));
         }
 
+    }
+
+    // for the button "blessed" in home.html
+    public async isBLAlreadySaid() {
+        const jewishSaidCalendar = new JewishCalendar(new Date()) as any;
+        const hebrewDate = this.getHebrewSaidFormat(jewishSaidCalendar);
+        const blSaidDate: Array<string> | null = await this.storage.get(GlobalVariables.BL_SAID_DATE);
+        if (blSaidDate?.includes(hebrewDate)) {
+            return true;
+        }
+        return false;
     }
 
     private setNotification(startMoment: Moment, end: Moment): void {
@@ -135,12 +148,14 @@ export class NotificationsService {
             sound: null,
             foreground: true,
             priority: 2,
-            text: this.translate.instant(this.dict.REMINDER_TO_BIRCAT_HALEVANA).toString(),
+            text: this.platformsService.isAndroid() ?
+                this.translate.instant(this.dict.TZADIK_ALREADY_BLESSED).toString() :
+                this.translate.instant(this.dict.REMINDER_TO_BIRCAT_HALEVANA).toString(),
             trigger: {at: date}, /////
             // trigger: {at: new Date(new Date().getTime() + 5000)},
             actions: [{
-                id: GlobalVariables.ALREADY_SAID,
-                title: this.translate.instant(this.dict.ALREADY_SAID).toString(),
+                id: GlobalVariables.ALREADY_BLESSED,
+                title: this.translate.instant(this.dict.ALREADY_BLESSED).toString(),
                 launch: true
             }]
         });
@@ -149,5 +164,9 @@ export class NotificationsService {
     private isBeforeTishaBeab(date: Date): boolean {
         const jewishCalendar = new JewishCalendar(date) as any;
         return jewishCalendar.jewishMonth === 5 && jewishCalendar.jewishDay < 9;
+    }
+
+    private getHebrewSaidFormat(jewishSaidCalendar): string {
+        return `${jewishSaidCalendar.jewishYear}_${jewishSaidCalendar.jewishMonth}`;
     }
 }

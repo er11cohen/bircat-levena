@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {Platform} from '@ionic/angular';
+import {AlertController, Platform} from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
 import {SettingsService} from './settings.service';
 import {CoordinatesService} from './coordinates.service';
@@ -10,25 +10,13 @@ import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './translations-di
     providedIn: 'root'
 })
 export class UtilsService {
-    constructor(private readonly platform: Platform,
-                @Inject(TRANSLATIONS_DICTIONARY)
+    constructor(@Inject(TRANSLATIONS_DICTIONARY)
                 public readonly dict: TranslationsDictionary,
                 public readonly translate: TranslateService,
                 private readonly settingsService: SettingsService,
                 private readonly coordinatesService: CoordinatesService,
-                private readonly notificationsService: NotificationsService) {
-    }
-
-    public isMobile() {
-        return this.platform.is('cordova');
-    }
-
-    public isAndroid() {
-        return this.isMobile() && this.platform.is('android');
-    }
-
-    public isIos() {
-        return this.isMobile() && this.platform.is('ios');
+                private readonly notificationsService: NotificationsService,
+                private readonly alertController: AlertController) {
     }
 
     public async initialData(): Promise<void> {
@@ -42,6 +30,28 @@ export class UtilsService {
     public async initialCoordinatesAndCreateBLNotifications(): Promise<void> {
         await this.translate.get(this.dict.BL_START_TIME).toPromise();
         await this.coordinatesService.initialCoordinates();
-        await this.notificationsService.createBLNotifications();
+        await this.notificationsService.createBLNotifications(false);
+    }
+
+    public openNextMonthModal(): void {
+        this.translate.get([
+            this.dict.BIRCAT_HALEVANA,
+            this.dict.WELL_DONE_ON_BLESSING,
+            this.dict.MEET_NEXT_MONTH
+        ]).subscribe(async (str) => {
+            const alert = await this.alertController.create({
+                // cssClass: 'my-custom-class',
+                header: str.BIRCAT_HALEVANA,
+                // subHeader: 'Subtitle',
+                message: str.WELL_DONE_ON_BLESSING,
+                buttons: [
+                    {
+                        text: str.MEET_NEXT_MONTH,
+                    }
+                ]
+            });
+
+            await alert.present();
+        });
     }
 }
