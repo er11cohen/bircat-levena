@@ -26,7 +26,7 @@ export class SettingsService {
         const defaultSettings = {
             nusach: Nusach.EDOT_MIZRACH,
             startBircatLevana: StartBircatLevana.SEVEN,
-            endBircatLevana: EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_BETWEEN_MOLDOS,
+            // endBircatLevana: EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS,
             darkMode: false,
             fontSize: FontSize.L,
         } as Settings;

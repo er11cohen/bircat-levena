@@ -78,7 +78,7 @@ export class AppComponent {
         //  this.updateCode();
 
         // @ts-ignore
-        const launchDetails = (cordova.plugins as any)?.notification?.local?.launchDetails;
+        const launchDetails = (window.cordova?.plugins as any)?.notification?.local?.launchDetails;
         if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED) {
             this.utilsService.openNextMonthModal();
         }

@@ -39,7 +39,9 @@ export class CoordinatesService {
                 } else {
                     await this.getLocation();
                 }
-            } catch (e) {}
+            } catch (e) {
+                this.setHarHabayisCoordinates();
+            }
         });
     }
 
@@ -79,12 +81,16 @@ export class CoordinatesService {
         } catch (e) {
             this.coordinates = await this.storage.get(GlobalVariables.LAST_COORD);
             if (!this.coordinates) {
-                this.coordinates = {
-                    latitude: 31.778, // Har Habayis latitude,
-                    longitude: 35.2354, // Har Habayis longitude
-                } as BLCoordinates;
+                this.setHarHabayisCoordinates();
             }
             this.resolve();
         }
+    }
+
+    private setHarHabayisCoordinates(): void {
+        this.coordinates = {
+            latitude: 31.778, // Har Habayis latitude,
+            longitude: 35.2354, // Har Habayis longitude
+        } as BLCoordinates;
     }
 }

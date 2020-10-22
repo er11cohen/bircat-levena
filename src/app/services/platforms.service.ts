@@ -7,7 +7,7 @@ export class PlatformsService {
     constructor(private readonly platform: Platform) {
     }
 
-    private isMobile(): boolean {
+    public isMobile(): boolean {
         // return true; //////////////////////////////
          return this.platform.is('cordova');
     }

@@ -37,9 +37,11 @@ export class NotificationsService {
 
         const settings = this.settingsService.getSettings();
 
-        await this.localNotifications.cancelAll();
+        if (this.platformsService.isMobile()) {
+            await this.localNotifications.cancelAll();
+        }
         // @ts-ignore
-        const launchDetails = (cordova.plugins as any)?.notification?.local?.launchDetails;
+        const launchDetails = (window.cordova?.plugins as any)?.notification?.local?.launchDetails;
         let index = 0;
 
         const jewishSaidCalendar = new JewishCalendar(new Date()) as any;
@@ -65,11 +67,11 @@ export class NotificationsService {
             startBL = StartBircatLevana.SEVEN;
 
         }
-        let endBL = settings.endBircatLevana;
-        if (!endBL) {
-            endBL = EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS;
-
-        }
+        // let endBL = settings.endBircatLevana;
+        // if (!endBL) {
+        //     endBL = EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS;
+        //
+        // }
         let date: Date;
         for (; index < this.months; index++) {
             date = moment().add(index, 'M').toDate();
@@ -81,20 +83,20 @@ export class NotificationsService {
                 tchilas = jewishCalendar.getTchilasZmanKidushLevana3Days();
             }
 
-            let sof;
-            if (endBL === EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS) {
-                sof = jewishCalendar.getSofZmanKidushLevana15Days();
-            } else {
-                sof = jewishCalendar.getSofZmanKidushLevanaBetweenMoldos();
-            }
+            // let sof;
+            // if (endBL === EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS) {
+            const end15Days = jewishCalendar.getSofZmanKidushLevana15Days();
+            //  else {
+            const endBetweenMoldos = jewishCalendar.getSofZmanKidushLevanaBetweenMoldos();
+            // }
 
-            this.setNotification(moment(new Date(tchilas)), moment(new Date(sof)));
+            this.setNotification(moment(new Date(tchilas)), moment(new Date(end15Days)), moment(new Date(endBetweenMoldos)));
         }
 
     }
 
     // for the button "blessed" in home.html
-    public async isBLAlreadySaid() {
+    public async isBLAlreadySaid(): Promise<boolean> {
         const jewishSaidCalendar = new JewishCalendar(new Date()) as any;
         const hebrewDate = this.getHebrewSaidFormat(jewishSaidCalendar);
         const blSaidDate: Array<string> | null = await this.storage.get(GlobalVariables.BL_SAID_DATE);
@@ -104,9 +106,9 @@ export class NotificationsService {
         return false;
     }
 
-    private setNotification(startMoment: Moment, end: Moment): void {
+    private setNotification(startMoment: Moment, end15Days: Moment, endBetweenMoldos: Moment): void {
         let start: Moment;
-        for (let i = 0; i < end.diff(startMoment, 'days') + 1; i++) {
+        for (let i = 0; i < end15Days.diff(startMoment, 'days') + 1; i++) {
             start = startMoment.clone().add(i, 'd');
             if (start.weekday() === 5) { // friday
                 continue;
@@ -124,8 +126,16 @@ export class NotificationsService {
                 start = tzais;
             }
 
-            if (start.isBefore(end)) {
-                this.createBlNotification(start.toDate());
+            const jewishCalendar = new JewishCalendar(start.toDate()) as any;
+            if (jewishCalendar.jewishDay >= 15) {
+                // because at night will be 16
+                continue;
+            }
+
+            if (start.isBefore(end15Days) && start.isBefore(endBetweenMoldos)) {
+                this.createBlNotification(start.toDate(), false);
+            } else if (start.isBefore(end15Days) && start.isAfter(endBetweenMoldos)) {
+                this.createBlNotification(start.toDate(), true);
             }
         }
     }
@@ -141,17 +151,26 @@ export class NotificationsService {
         return getZmanimJson(options);
     }
 
-    private createBlNotification(date: Date): void {
+    private createBlNotification(date: Date, isDispute: boolean): void {
         console.log(date);
+        let text: string;
+        if (isDispute) {
+            text = this.translate.instant(this.dict.DISPUTE_NIGHT).toString();
+        } else {
+            text = this.translate.instant(this.dict.TZADIK_ALREADY_BLESSED).toString();
+        }
+
+        if (!this.platformsService.isMobile()) {
+            return;
+        }
         this.localNotifications.schedule({
             id: new Date().getTime(),
             sound: null,
             foreground: true,
             priority: 2,
-            text: this.platformsService.isAndroid() ?
-                this.translate.instant(this.dict.TZADIK_ALREADY_BLESSED).toString() :
-                this.translate.instant(this.dict.REMINDER_TO_BIRCAT_HALEVANA).toString(),
-            trigger: {at: date}, /////
+            title: this.translate.instant(this.dict.REMINDER_TO_BIRCAT_HALEVANA).toString(),
+            text,
+            trigger: {at: date},
             // trigger: {at: new Date(new Date().getTime() + 5000)},
             actions: [{
                 id: GlobalVariables.ALREADY_BLESSED,

@@ -41,12 +41,12 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     LARGE: 'גדול',
     XLARGE: 'גדול מאוד',
     XXLARGE: 'ענק',
-    SHARE_APP: 'מהיום לא שוכחים לברך את הלבנה, אפלקציית תזכורת לברכת הלבנה',
+    SHARE_APP: 'מהיום לא שוכחים לברך את הלבנה, אפלקצית תזכורת לברכת הלבנה',
     OPEN_STORE: 'צדיק אהבת את האפלקציה? דרג אותנו 5 כוכבים וטול חלק בזיכוי הרבים.',
     ABOUT_TITLE: 'אודות',
     ABOUT: {
         AGAIN_CLOUDY: 'שוב היה מעונן במוצאי שבת?',
-        AGAIN_PASS_WEEK: 'שוב כל השבוע עבר ושכחת לברך?',
+        AGAIN_PASS_WEEK: 'שוב כל השבוע עבר ושכחת לברך.',
         NO_FROM_TODAY: 'מהיום לא עוד! האפלקציה תזכיר לך מדי ערב עד שתברך את הלבנה.',
         APP_CREATED_BY: 'אפלקציה זו פותחה ע"י ערן כהן על מנת לזכות את ישראל בברכת הלבנה.',
         LOVE_APP: 'אהבתם את האפלקציה?',
@@ -57,6 +57,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
         ENCOUNTER_PROBLEM: 'אם נתקלת בבעיה',
         CONTACT_ME: 'צור קשר',
     },
+    DISPUTE_NIGHT: 'הערה: לחלק מהפוסקים כבר לא ניתן לברך'
 };
 
 export default iwTranslationsDictionary;

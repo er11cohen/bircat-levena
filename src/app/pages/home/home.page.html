@@ -28,7 +28,7 @@
         <sfard  *ngIf="settings.nusach === nusach.SFARAD"></sfard>
         <teiman *ngIf="settings.nusach === nusach.TEIMAN"></teiman>
     </div>
-    <div class="button-wrapper">
+    <div class="button-wrapper" *ngIf="!isBlessed">
         <ion-button (click)="blessed()">
             <ion-icon name="checkmark-sharp"></ion-icon>
             {{ dict.BLESSED | translate }}

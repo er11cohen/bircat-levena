@@ -21,6 +21,7 @@ import {UtilsService} from '../../services/utils.service';
 export class HomePage implements OnInit {
     public settings: Settings;
     public nusach: typeof Nusach = Nusach;
+    public isBlessed = false;
 
     constructor(private settingsService: SettingsService,
                 public alertController: AlertController,
@@ -32,11 +33,12 @@ export class HomePage implements OnInit {
                 private readonly market: Market,
                 private readonly toast: Toast,
                 private readonly notificationsService: NotificationsService,
-                private readonly utilsService: UtilsService,) {
+                private readonly utilsService: UtilsService) {
     }
 
     async ngOnInit() {
         this.settings = this.settingsService.getSettings();
+        this.isBlessed = await this.notificationsService.isBLAlreadySaid();
     }
 
     public shareApp(): void {
@@ -64,6 +66,7 @@ export class HomePage implements OnInit {
     public blessed(): void {
         this.notificationsService.createBLNotifications(true);
         this.utilsService.openNextMonthModal();
+        this.isBlessed = true;
     }
 
 }
