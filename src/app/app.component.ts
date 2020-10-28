@@ -33,7 +33,7 @@ export class AppComponent {
         {
             title: 'ABOUT_TITLE',
             url: '/about',
-            icon: 'list'
+            icon: 'help-circle'
         },
         {
             title: 'SETTINGS',

@@ -14,8 +14,8 @@ const enTranslationsDictionary = {
   BIRCAT_HALEVANA: 'Birkat Halevana',
   REMINDER_TO_BIRCAT_HALEVANA: 'Birkat Halevana Reminder',
   BL_START_TIME: 'Start time for Birkat Halevana',
-  _3_DAYS_AFTER_MOLAD: '3 days after the Molad',
-  _7_DAYS_AFTER_MOLAD: '7 days after the Molad',
+  _3_DAYS_AFTER_MOLAD: '3 days after the Molad (generally Ashkenazim)',
+  _7_DAYS_AFTER_MOLAD: '7 days after the Molad (generally Seferadim and Hasidim)',
   _15_DAYS_AFTER_MOLAD: '15 days after the Molad',
   BETWEEN_MOLDOS: 'Halfway between one Molad and another',
   BL_END_TIME: 'End time for Birkat Halevana',
@@ -55,7 +55,9 @@ const enTranslationsDictionary = {
     ENCOUNTER_PROBLEM: 'If you encounter any problem',
     CONTACT_ME: 'Contact me',
   },
-  DISPUTE_NIGHT: 'Remark: to part of Poskim already can not to bless',
+  DISPUTE_NIGHT: 'Please note: according to some Poskim it is no longer allowed to bless',
+  SELECT_NUSACH: 'Please select Nusach',
+  SELECT: 'Select',
 };
 
 export default enTranslationsDictionary;

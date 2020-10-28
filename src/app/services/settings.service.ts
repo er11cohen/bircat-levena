@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Settings} from '../models/settings';
 import {GlobalVariables} from '../shared/global/global-variables';
 import {Storage} from '@ionic/storage';
-import {EndBircatLevana, FontSize, Languages, Nusach, StartBircatLevana} from '../shared/enums';
+import {FontSize, Languages, Nusach, StartBircatLevana} from '../shared/enums';
 import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
@@ -40,32 +40,32 @@ export class SettingsService {
             };
         }
 
-        this.setAppChanges(this.settings);
+        this.setAppChanges();
     }
 
     public getSettings(): Settings {
-        return this.settings;
+        return {...this.settings};
     }
 
     public setSettings(settings: Settings): void {
-        this.settings = settings;
-        this.storage.set(GlobalVariables.SETTINGS, settings);
-        this.setAppChanges(settings);
+        this.settings = {...settings};
+        this.storage.set(GlobalVariables.SETTINGS, this.settings);
+        this.setAppChanges();
     }
 
-    private setAppChanges(settings: Settings) {
-        if (!settings.language && window.navigator.language.startsWith('en')) {
+    private setAppChanges() {
+        if (!this.settings.language && window.navigator.language.startsWith('en')) {
             this.translate.use(Languages.EN);
         }
 
-        if (settings.language) {
-            this.translate.use(settings.language);
+        if (this.settings.language) {
+            this.translate.use(this.settings.language);
         }
 
         // set dark mode
-        document.body.classList.toggle('dark', settings.darkMode);
+        document.body.classList.toggle('dark', this.settings.darkMode);
 
-        document.documentElement.style.fontSize = settings.fontSize;
+        document.documentElement.style.fontSize = this.settings.fontSize;
     }
 }
 

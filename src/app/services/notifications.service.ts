@@ -20,7 +20,7 @@ import {PlatformsService} from './platforms.service';
 export class NotificationsService {
 
     public settings: Settings;
-    private readonly months = 12; //////// 2
+    private readonly months = 6; //////// 2
 
     constructor(
         private readonly localNotifications: LocalNotifications,

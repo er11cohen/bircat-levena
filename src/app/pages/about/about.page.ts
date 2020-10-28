@@ -19,7 +19,7 @@ export class AboutPage implements OnInit {
         @Inject(TRANSLATIONS_DICTIONARY)
         public dict: TranslationsDictionary,
         public translate: TranslateService,
-        private platformsService: PlatformsService,
+        public platformsService: PlatformsService,
         private  device: Device,
         private appVersion: AppVersion) {
 

@@ -47,3 +47,22 @@ ion-button {
   text-transform: none;
 }
 
+button.alert-radio-button {
+  height: 60px !important;
+
+  .alert-button-inner {
+    .alert-radio-label {
+      white-space: normal;
+      padding-inline-end: 0;
+      padding-inline-start: 30px;
+    }
+  }
+}
+
+.alert-radio-group.sc-ion-alert-md > button.alert-radio-button:not(:last-child) {
+  border-bottom: #d9d9d9 1px solid !important;
+}
+
+
+
+

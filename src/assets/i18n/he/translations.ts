@@ -16,8 +16,8 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     BIRCAT_HALEVANA: 'ברכת הלבנה',
     REMINDER_TO_BIRCAT_HALEVANA: 'תזכורת לברכת הלבנה',
     BL_START_TIME: 'תחילת זמן ברכת הלבנה',
-    _3_DAYS_AFTER_MOLAD: '3 ימים אחרי המולד',
-    _7_DAYS_AFTER_MOLAD: '7 ימים אחרי המולד',
+    _3_DAYS_AFTER_MOLAD: '3 ימים אחרי המולד (בד"כ אשכנזים)',
+    _7_DAYS_AFTER_MOLAD: '7 ימים אחרי המולד (בד"כ ספרדים וחסידים)',
     _15_DAYS_AFTER_MOLAD: '15 ימים אחרי המולד',
     BETWEEN_MOLDOS: 'באמצע בין מולד למולד',
     BL_END_TIME: 'סוף זמן ברכת הלבנה',
@@ -57,7 +57,9 @@ const iwTranslationsDictionary: TranslationsDictionary = {
         ENCOUNTER_PROBLEM: 'אם נתקלת בבעיה',
         CONTACT_ME: 'צור קשר',
     },
-    DISPUTE_NIGHT: 'הערה: לחלק מהפוסקים כבר לא ניתן לברך'
+    DISPUTE_NIGHT: 'הערה: לחלק מהפוסקים כבר לא ניתן לברך',
+    SELECT_NUSACH: 'אנא בחר נוסח',
+    SELECT: 'בחר',
 };
 
 export default iwTranslationsDictionary;

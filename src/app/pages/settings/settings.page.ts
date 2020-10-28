@@ -3,6 +3,7 @@ import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../models/settings';
 import {EndBircatLevana, FontSize, Languages, Nusach, StartBircatLevana} from '../../shared/enums';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from '../../services/translations-dictionary';
+import {NotificationsService} from '../../services/notifications.service';
 
 @Component({
     selector: 'app-settings',
@@ -19,7 +20,8 @@ export class SettingsPage implements OnInit {
 
     constructor(private settingsService: SettingsService,
                 @Inject(TRANSLATIONS_DICTIONARY)
-                public readonly dict: TranslationsDictionary) {
+                public readonly dict: TranslationsDictionary,
+                private readonly notificationsService: NotificationsService) {
     }
 
     ngOnInit() {
@@ -27,7 +29,12 @@ export class SettingsPage implements OnInit {
     }
 
     public setSettings(): void {
+        const isStartBircatLevanaChanged = this.settings.startBircatLevana
+            !== this.settingsService.getSettings().startBircatLevana;
         this.settingsService.setSettings(this.settings);
+        if (isStartBircatLevanaChanged) {
+            this.notificationsService.createBLNotifications(false);
+        }
     }
 
 }
