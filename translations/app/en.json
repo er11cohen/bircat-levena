@@ -1,0 +1,10 @@
+{
+  "config_ios": {
+    "CFBundleDisplayName": "Birkat Halevana Reminder",
+    "NSLocationWhenInUseUsageDescription": "Tzadik, in order to calculate the time for Birkat Halevana in your location, access to the device location is required."
+  },
+  "config_android": {
+    "app_name": "Birkat Halevana Reminder"
+  },
+  "app": {}
+}

@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
 
-import { HomePage } from './home.page';
+import { SettingsPage } from './settings.page';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -14,10 +15,11 @@ import { HomePage } from './home.page';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
+        component: SettingsPage
       }
-    ])
+    ]),
+    SharedModule
   ],
-  declarations: [HomePage]
+  declarations: [SettingsPage]
 })
-export class HomePageModule {}
+export class SettingsPageModule {}

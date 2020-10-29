@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
-import { ListPage } from './list.page';
+import { AboutPage } from './about.page';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -14,10 +15,11 @@ import { ListPage } from './list.page';
     RouterModule.forChild([
       {
         path: '',
-        component: ListPage
+        component: AboutPage
       }
-    ])
+    ]),
+    TranslateModule
   ],
-  declarations: [ListPage]
+  declarations: [AboutPage]
 })
-export class ListPageModule {}
+export class AboutPageModule {}

@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>  {{ dict.SETTINGS | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="settings">
+  <ion-list class="ion-no-padding">
+    <ion-item-group>
+      <ion-item-divider color="light">{{ dict.NOTIFICATION | translate }}</ion-item-divider>
+      <ion-item>
+        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ dict.BL_START_TIME | translate }}</ion-label>
+        <ion-select [(ngModel)]="settings.startBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
+                    okText="{{ dict.SAVE | translate }}">
+          <ion-select-option [value]="startBircatLevana.THREE">{{ dict._3_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
+          <ion-select-option [value]="startBircatLevana.SEVEN">{{ dict._7_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+<!--      <ion-item>-->
+<!--        <ion-icon name="moon" color="secondary"></ion-icon>-->
+<!--        <ion-label class="settings__label">{{ dict.BL_END_TIME | translate }}</ion-label>-->
+<!--        <ion-select [(ngModel)]="settings.endBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"-->
+<!--                    okText="{{ dict.SAVE | translate }}">-->
+<!--          <ion-select-option [value]="endBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS">{{ dict._15_DAYS_AFTER_MOLAD | translate }}</ion-select-option>-->
+<!--          <ion-select-option [value]="endBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_BETWEEN_MOLDOS">{{ dict.BETWEEN_MOLDOS | translate }}</ion-select-option>-->
+<!--        </ion-select>-->
+<!--      </ion-item>-->
+
+      <ion-item-divider color="light">{{ dict.APP_SETTINGS | translate }}</ion-item-divider>
+      <ion-item>
+        <ion-icon name="book" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ dict.NUSACH | translate }}</ion-label>
+        <ion-select [(ngModel)]="settings.nusach" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
+                    okText="{{ dict.SAVE | translate }}">
+          <ion-select-option [value]="nusach.SFARAD">{{ dict.SEFARD | translate }}</ion-select-option>
+          <ion-select-option [value]="nusach.ASKENAZ">{{ dict.ASHKENAZ | translate }}</ion-select-option>
+          <ion-select-option [value]="nusach.EDOT_MIZRACH">{{ dict.EDOT_HAMIZRACH | translate }}</ion-select-option>
+          <ion-select-option [value]="nusach.TEIMAN">{{ dict.TEMAN | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="language-outline" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ dict.LANGUAGE | translate }}</ion-label>
+        <ion-select [(ngModel)]="settings.language" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
+                    okText="{{ dict.SAVE | translate }}">
+          <ion-select-option [value]="languages.HE">עברית</ion-select-option>
+          <ion-select-option [value]="languages.EN">English</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-label class="settings__label" (click)="darkModeToggle.checked = !darkModeToggle.checked">{{ dict.DARK_MODE | translate }}</ion-label>
+        <ion-toggle #darkModeToggle [(ngModel)]="settings.darkMode" (ionChange)="setSettings()"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="language-outline" color="secondary"></ion-icon>
+        <ion-label class="settings__label">{{ dict.FONT_SIZE | translate }}</ion-label>
+        <ion-select [(ngModel)]="settings.fontSize" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
+                    okText="{{ dict.SAVE | translate }}">
+          <ion-select-option [value]="fontSize.S">{{ dict.SMALL | translate }}</ion-select-option>
+          <ion-select-option [value]="fontSize.M">{{ dict.MEDIUM | translate }}</ion-select-option>
+          <ion-select-option [value]="fontSize.L">{{ dict.LARGE | translate }}</ion-select-option>
+          <ion-select-option [value]="fontSize.XL">{{ dict.XLARGE | translate }}</ion-select-option>
+          <ion-select-option [value]="fontSize.XXL">{{ dict.XXLARGE | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div class="settings__text-to-show">
+        {{ dict.TEXT_TO_SHOW | translate }}
+      </div>
+
+    </ion-item-group>
+  </ion-list>
+</ion-content>

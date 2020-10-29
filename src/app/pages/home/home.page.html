@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            <div class="title">
+                <div  class="title__text">
+                    {{ dict.BIRCAT_HALEVANA | translate }}
+                </div>
+                <div class="title__icons">
+                    <div class="title__share">
+                        <ion-icon name="share-social" (click)="shareApp()"></ion-icon>
+                    </div>
+                    <div class="title__open_store">
+                        <ion-icon name="star" (click)="openStore()"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <edot-mizrach *ngIf="settings.nusach === nusach.EDOT_MIZRACH"></edot-mizrach>
+        <askenaz *ngIf="settings.nusach === nusach.ASKENAZ"></askenaz>
+        <sfard  *ngIf="settings.nusach === nusach.SFARAD"></sfard>
+        <teiman *ngIf="settings.nusach === nusach.TEIMAN"></teiman>
+    </div>
+    <div class="button-wrapper" *ngIf="!isBlessed">
+        <ion-button (click)="blessed()">
+            <ion-icon name="checkmark-sharp"></ion-icon>
+            {{ dict.BLESSED | translate }}
+        </ion-button>
+    </div>
+</ion-content>
