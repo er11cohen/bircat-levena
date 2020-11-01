@@ -30,7 +30,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     LOCATION_ACCESS: 'צדיק כדי לחשב את ברכת הלבנה במיקומך אנא אשר הרשאת מיקום',
     HAPPILY: 'בשמחה',
     WHATS_NEW: 'מה חדש?',
-    APP_SETTINGS: 'הגדרות אפליקציה',
+    APP_SETTINGS: 'הגדרות אפלקציה',
     NOTIFICATION: 'התראות',
     LANGUAGE: 'שפה',
     DARK_MODE: 'מצב לילה',

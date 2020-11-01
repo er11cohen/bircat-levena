@@ -76,12 +76,6 @@ export class AppComponent {
         this.backButtonEvent();
         this.utilsService.initialCoordinatesAndCreateBLNotifications();
         //  this.updateCode();
-
-        // @ts-ignore
-        const launchDetails = (window.cordova?.plugins as any)?.notification?.local?.launchDetails;
-        if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED) {
-            this.utilsService.openNextMonthModal();
-        }
     }
 
     private languageChangedSubscription(): void {
