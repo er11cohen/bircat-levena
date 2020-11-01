@@ -29,29 +29,8 @@ export class UtilsService {
 
     public async initialCoordinatesAndCreateBLNotifications(): Promise<void> {
         await this.translate.get(this.dict.BL_START_TIME).toPromise();
+        await this.settingsService.initialSettings();
         await this.coordinatesService.initialCoordinates();
         await this.notificationsService.createBLNotifications(false);
-    }
-
-    public openNextMonthModal(): void {
-        this.translate.get([
-            this.dict.BIRCAT_HALEVANA,
-            this.dict.WELL_DONE_ON_BLESSING,
-            this.dict.MEET_NEXT_MONTH
-        ]).subscribe(async (str) => {
-            const alert = await this.alertController.create({
-                // cssClass: 'my-custom-class',
-                header: str.BIRCAT_HALEVANA,
-                // subHeader: 'Subtitle',
-                message: str.WELL_DONE_ON_BLESSING,
-                buttons: [
-                    {
-                        text: str.MEET_NEXT_MONTH,
-                    }
-                ]
-            });
-
-            await alert.present();
-        });
     }
 }

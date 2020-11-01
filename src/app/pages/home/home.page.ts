@@ -11,7 +11,6 @@ import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from '../../services/tr
 import {GlobalVariables} from '../../shared/global/global-variables';
 import {NotificationsService} from '../../services/notifications.service';
 import {PlatformsService} from '../../services/platforms.service';
-import {UtilsService} from '../../services/utils.service';
 
 @Component({
     selector: 'app-home',
@@ -32,13 +31,20 @@ export class HomePage implements OnInit {
                 private readonly platformsService: PlatformsService,
                 private readonly market: Market,
                 private readonly toast: Toast,
-                private readonly notificationsService: NotificationsService,
-                private readonly utilsService: UtilsService) {
+                private readonly notificationsService: NotificationsService) {
     }
 
     async ngOnInit() {
         this.settings = this.settingsService.getSettings();
         this.isBlessed = await this.notificationsService.isBLAlreadySaid();
+
+        // @ts-ignore
+        const launchDetails = (window.cordova?.plugins as any)?.notification?.local?.launchDetails;
+        if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED) {
+            // @ts-ignore
+            launchDetails.action = null;
+            this.openNextMonthModal();
+        }
     }
 
     public shareApp(): void {
@@ -65,8 +71,24 @@ export class HomePage implements OnInit {
 
     public blessed(): void {
         this.notificationsService.createBLNotifications(true);
-        this.utilsService.openNextMonthModal();
+        this.openNextMonthModal();
         this.isBlessed = true;
+    }
+
+    private async openNextMonthModal(): Promise<void> {
+            const alert = await this.alertController.create({
+                // cssClass: 'my-custom-class',
+                header: this.translate.instant(this.dict.BIRCAT_HALEVANA).toString(),
+                // subHeader: 'Subtitle',
+                message: this.translate.instant(this.dict.WELL_DONE_ON_BLESSING).toString(),
+                buttons: [
+                    {
+                        text:  this.translate.instant(this.dict.MEET_NEXT_MONTH).toString(),
+                    }
+                ]
+            });
+
+            await alert.present();
     }
 
 }
