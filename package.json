@@ -78,6 +78,7 @@
     "cordova-plugin-code-push": "^1.13.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-dialogs": "^2.0.2",
+    "cordova-plugin-doze-optimize": "^0.5.4",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-market": "^1.2.0",
@@ -123,7 +124,8 @@
       "cordova-plugin-code-push": {},
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-market": {},
-      "cordova-plugin-app-version": {}
+      "cordova-plugin-app-version": {},
+      "cordova-plugin-doze-optimize": {}
     },
     "platforms": [
       "android"

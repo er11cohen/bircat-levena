@@ -58,6 +58,8 @@ const enTranslationsDictionary = {
   DISPUTE_NIGHT: 'Please note: according to some Poskim it is no longer allowed to bless',
   SELECT_NUSACH: 'Please select Nusach',
   SELECT: 'Select',
+  REMINDER_NOT_SHOWING: 'Reminder not showing?',
+  BATTERY_OPTIMIZATIONS_EXPLAIN: 'In order to allow us try to fix the problem, please approve the following message',
 };
 
 export default enTranslationsDictionary;

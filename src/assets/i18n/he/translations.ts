@@ -60,6 +60,8 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     DISPUTE_NIGHT: 'הערה: לחלק מהפוסקים כבר לא ניתן לברך',
     SELECT_NUSACH: 'אנא בחר נוסח',
     SELECT: 'בחר',
+    REMINDER_NOT_SHOWING: 'תזכורת לא מופיעה?',
+    BATTERY_OPTIMIZATIONS_EXPLAIN: 'בכדי לנסות לתקן את הבעיה מומלץ לאשר את המסך הבא',
 };
 
 export default iwTranslationsDictionary;
