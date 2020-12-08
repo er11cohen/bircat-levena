@@ -21,8 +21,13 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <div class="ion-padding">
+<ion-content class="ion-padding">
+    <div *ngIf="showBatteryOptimizations" class="button-wrapper">
+        <ion-button (click)="requestBatteryOptimizations()">
+            {{ dict.REMINDER_NOT_SHOWING | translate }}
+        </ion-button>
+    </div>
+    <div>
         <edot-mizrach *ngIf="settings.nusach === nusach.EDOT_MIZRACH"></edot-mizrach>
         <askenaz *ngIf="settings.nusach === nusach.ASKENAZ"></askenaz>
         <sfard  *ngIf="settings.nusach === nusach.SFARAD"></sfard>
