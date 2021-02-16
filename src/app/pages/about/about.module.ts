@@ -6,19 +6,17 @@ import { RouterModule } from '@angular/router';
 
 import { AboutPage } from './about.page';
 import {TranslateModule} from '@ngx-translate/core';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: '',
         component: AboutPage
       }
     ]),
-    TranslateModule
   ],
   declarations: [AboutPage]
 })

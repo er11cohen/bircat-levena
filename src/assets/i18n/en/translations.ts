@@ -32,6 +32,7 @@ const enTranslationsDictionary = {
   NOTIFICATION: 'Notifications',
   LANGUAGE: 'Language',
   DARK_MODE: 'Dark mode',
+  FULL_SCREEN: 'Full screen',
   TEXT_TO_SHOW: 'Preview',
   FONT_SIZE: 'Font size',
   SMALL: 'Small',
@@ -60,6 +61,7 @@ const enTranslationsDictionary = {
   SELECT: 'Select',
   REMINDER_NOT_SHOWING: 'Reminder not showing?',
   BATTERY_OPTIMIZATIONS_EXPLAIN: 'In order to allow us try to fix the problem, please approve the following message',
+  HALACHOT: 'Halachot',
 };
 
 export default enTranslationsDictionary;

@@ -34,6 +34,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     NOTIFICATION: 'התראות',
     LANGUAGE: 'שפה',
     DARK_MODE: 'מצב לילה',
+    FULL_SCREEN: 'מסך מלא',
     TEXT_TO_SHOW: 'כך יראה הטקסט',
     FONT_SIZE: 'גודל פונט',
     SMALL: 'קטן',
@@ -62,6 +63,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     SELECT: 'בחר',
     REMINDER_NOT_SHOWING: 'תזכורת לא מופיעה?',
     BATTERY_OPTIMIZATIONS_EXPLAIN: 'בכדי לנסות לתקן את הבעיה מומלץ לאשר את המסך הבא',
+    HALACHOT: 'הלכות',
 };
 
 export default iwTranslationsDictionary;

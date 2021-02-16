@@ -12,7 +12,7 @@
     <ion-item-group>
       <ion-item-divider color="light">{{ dict.NOTIFICATION | translate }}</ion-item-divider>
       <ion-item>
-        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-icon name="moon-sharp" color="secondary"></ion-icon>
         <ion-label class="settings__label">{{ dict.BL_START_TIME | translate }}</ion-label>
         <ion-select [(ngModel)]="settings.startBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
                     okText="{{ dict.SAVE | translate }}">
@@ -55,7 +55,13 @@
       </ion-item>
 
       <ion-item lines="full">
-        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-icon name="expand" color="secondary" (click)="fullScreenToggle.checked = !fullScreenToggle.checked"></ion-icon>
+        <ion-label class="settings__label" (click)="fullScreenToggle.checked = !fullScreenToggle.checked">{{ dict.FULL_SCREEN | translate }}</ion-label>
+        <ion-toggle #fullScreenToggle [(ngModel)]="settings.fullScreen" (ionChange)="setSettings()"></ion-toggle>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-icon name="moon-sharp" color="secondary" (click)="darkModeToggle.checked = !darkModeToggle.checked"></ion-icon>
         <ion-label class="settings__label" (click)="darkModeToggle.checked = !darkModeToggle.checked">{{ dict.DARK_MODE | translate }}</ion-label>
         <ion-toggle #darkModeToggle [(ngModel)]="settings.darkMode" (ionChange)="setSettings()"></ion-toggle>
       </ion-item>
