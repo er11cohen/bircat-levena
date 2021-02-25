@@ -50,8 +50,10 @@ export class NotificationsService {
         let blSaidDateArr: Array<string> = blSaidDate ? blSaidDate : [];
         if (blSaidDateArr.includes(hebrewDate)) {
             index = 1;
-        } else if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED
-            || alreadyBlessed) {
+        } else if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED || alreadyBlessed) {
+            if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED) {
+                launchDetails.action = null;
+            }
             blSaidDateArr.push(hebrewDate);
             // clear old years
             blSaidDateArr = blSaidDateArr.filter((blDate: string) => {

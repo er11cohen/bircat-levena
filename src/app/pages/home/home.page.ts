@@ -42,8 +42,6 @@ export class HomePage implements OnInit {
         // @ts-ignore
         const launchDetails = (window.cordova?.plugins as any)?.notification?.local?.launchDetails;
         if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED) {
-            // @ts-ignore
-            launchDetails.action = null;
             this.openNextMonthModal();
         }
 
