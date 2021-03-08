@@ -28,10 +28,12 @@ const enTranslationsDictionary = {
   LOCATION_ACCESS: 'Tzadik, in order to calculate the time for Birkat Halevana in your location, access to the device location is required',
   HAPPILY: 'With pleasure',
   WHATS_NEW: 'What\'s new',
+  WHATS_NEW_MESSAGE: 'Added full-screen option in settings<br><br>Added Hilchot Birkat Halevana',
   APP_SETTINGS: 'App settings',
   NOTIFICATION: 'Notifications',
   LANGUAGE: 'Language',
   DARK_MODE: 'Dark mode',
+  FULL_SCREEN: 'Full screen',
   TEXT_TO_SHOW: 'Preview',
   FONT_SIZE: 'Font size',
   SMALL: 'Small',
@@ -60,6 +62,10 @@ const enTranslationsDictionary = {
   SELECT: 'Select',
   REMINDER_NOT_SHOWING: 'Reminder not showing?',
   BATTERY_OPTIMIZATIONS_EXPLAIN: 'In order to allow us try to fix the problem, please approve the following message',
+  HALACH_AND_AGADA: 'Halacha & Agada',
+  SELECT_LIMUD: 'Select learning',
+  AGADA_GATE: 'Agada gate',
+  HALACH_GATE: 'Halacha gate',
 };
 
 export default enTranslationsDictionary;

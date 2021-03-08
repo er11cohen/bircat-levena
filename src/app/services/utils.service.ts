@@ -1,5 +1,4 @@
 import {Inject, Injectable} from '@angular/core';
-import {AlertController, Platform} from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
 import {SettingsService} from './settings.service';
 import {CoordinatesService} from './coordinates.service';
@@ -15,8 +14,7 @@ export class UtilsService {
                 public readonly translate: TranslateService,
                 private readonly settingsService: SettingsService,
                 private readonly coordinatesService: CoordinatesService,
-                private readonly notificationsService: NotificationsService,
-                private readonly alertController: AlertController) {
+                private readonly notificationsService: NotificationsService) {
     }
 
     public async initialData(): Promise<void> {

@@ -41,6 +41,7 @@ export class CoordinatesService {
                 }
             } catch (e) {
                 this.setHarHabayisCoordinates();
+                this.resolve();
             }
         });
     }

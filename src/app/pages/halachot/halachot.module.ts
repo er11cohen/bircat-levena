@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
 
-import {AboutPage} from './about.page';
+import {HalachotPage} from './halachot.page';
 import {SharedModule} from '../../shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -10,10 +10,10 @@ import {SharedModule} from '../../shared/shared.module';
     RouterModule.forChild([
       {
         path: '',
-        component: AboutPage
+        component: HalachotPage
       }
     ]),
   ],
-  declarations: [AboutPage]
+  declarations: [HalachotPage]
 })
-export class AboutPageModule {}
+export class HalachotPageModule {}

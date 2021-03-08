@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {Device} from '@ionic-native/device/ngx';
 import {AppVersion} from '@ionic-native/app-version/ngx';

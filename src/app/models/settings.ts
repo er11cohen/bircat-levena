@@ -7,4 +7,5 @@ export interface Settings {
     language?: Languages;
     darkMode: boolean;
     fontSize: string;
+    fullScreen: boolean;
 }

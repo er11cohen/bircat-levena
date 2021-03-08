@@ -4,6 +4,7 @@ import {GlobalVariables} from '../shared/global/global-variables';
 import {Storage} from '@ionic/storage';
 import {FontSize, Languages, Nusach, StartBircatLevana} from '../shared/enums';
 import {TranslateService} from '@ngx-translate/core';
+import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,8 @@ export class SettingsService {
 
     constructor(
         private readonly storage: Storage,
-        public translate: TranslateService,
+        private readonly statusBar: StatusBar,
+        private readonly translate: TranslateService,
     ) {
     }
 
@@ -28,6 +30,7 @@ export class SettingsService {
             startBircatLevana: StartBircatLevana.SEVEN,
             // endBircatLevana: EndBircatLevana.SOF_ZMAN_KIDUSH_LEVANA_15_DAYS,
             darkMode: false,
+            fullScreen: false,
             fontSize: FontSize.L,
         } as Settings;
 
@@ -66,6 +69,12 @@ export class SettingsService {
         document.body.classList.toggle('dark', this.settings.darkMode);
 
         document.documentElement.style.fontSize = this.settings.fontSize;
+
+        if (this.settings.fullScreen) {
+            this.statusBar.hide();
+        } else {
+            this.statusBar.show();
+        }
     }
 }
 

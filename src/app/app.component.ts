@@ -2,10 +2,8 @@ import {Component, Inject} from '@angular/core';
 
 import {AlertController, MenuController, Platform, ToastController} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
-import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
-import {Storage} from '@ionic/storage';
 import {Toast} from '@ionic-native/toast/ngx';
 import {CodePush, ILocalPackage} from '@ionic-native/code-push/ngx';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
@@ -31,6 +29,11 @@ export class AppComponent {
             icon: 'home'
         },
         {
+            title: 'HALACH_AND_AGADA',
+            url: '/halachot',
+            icon: 'book'
+        },
+        {
             title: 'ABOUT_TITLE',
             url: '/about',
             icon: 'help-circle'
@@ -49,10 +52,8 @@ export class AppComponent {
         public translate: TranslateService,
         private platform: Platform,
         private splashScreen: SplashScreen,
-        private statusBar: StatusBar,
         private localNotifications: LocalNotifications,
         private geolocation: Geolocation,
-        private storage: Storage,
         private toast: Toast,
         private utilsService: UtilsService,
         private alertController: AlertController,
@@ -70,7 +71,6 @@ export class AppComponent {
         await this.platform.ready();
 
         // this.statusBar.backgroundColorByHexString('427ebb');
-        this.statusBar.hide();
         this.splashScreen.hide();
 
         this.setLanguage();

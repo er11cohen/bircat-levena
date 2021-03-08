@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons class="ion-menu-button-toolbar" slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>  {{ dict.SETTINGS | translate }}</ion-title>
@@ -12,9 +12,9 @@
     <ion-item-group>
       <ion-item-divider color="light">{{ dict.NOTIFICATION | translate }}</ion-item-divider>
       <ion-item>
-        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-icon name="moon-sharp" color="secondary"></ion-icon>
         <ion-label class="settings__label">{{ dict.BL_START_TIME | translate }}</ion-label>
-        <ion-select [(ngModel)]="settings.startBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
+        <ion-select [interfaceOptions]="{cssClass: 'bl-start-time'}" [(ngModel)]="settings.startBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
                     okText="{{ dict.SAVE | translate }}">
           <ion-select-option [value]="startBircatLevana.THREE">{{ dict._3_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
           <ion-select-option [value]="startBircatLevana.SEVEN">{{ dict._7_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
@@ -55,7 +55,13 @@
       </ion-item>
 
       <ion-item lines="full">
-        <ion-icon name="moon" color="secondary"></ion-icon>
+        <ion-icon name="expand" color="secondary" (click)="fullScreenToggle.checked = !fullScreenToggle.checked"></ion-icon>
+        <ion-label class="settings__label" (click)="fullScreenToggle.checked = !fullScreenToggle.checked">{{ dict.FULL_SCREEN | translate }}</ion-label>
+        <ion-toggle #fullScreenToggle [(ngModel)]="settings.fullScreen" (ionChange)="setSettings()"></ion-toggle>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-icon name="moon-sharp" color="secondary" (click)="darkModeToggle.checked = !darkModeToggle.checked"></ion-icon>
         <ion-label class="settings__label" (click)="darkModeToggle.checked = !darkModeToggle.checked">{{ dict.DARK_MODE | translate }}</ion-label>
         <ion-toggle #darkModeToggle [(ngModel)]="settings.darkMode" (ionChange)="setSettings()"></ion-toggle>
       </ion-item>

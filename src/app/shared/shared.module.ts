@@ -18,7 +18,6 @@ const usedModules = [
 
 
 @NgModule({
-    entryComponents: [],
     imports: [...usedModules],
     declarations: [...sharedComponents],
     exports: [...usedModules, ...sharedComponents],
