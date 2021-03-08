@@ -11,6 +11,8 @@ import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from '../../services/tr
 import {GlobalVariables} from '../../shared/global/global-variables';
 import {NotificationsService} from '../../services/notifications.service';
 import {PlatformsService} from '../../services/platforms.service';
+import {Storage} from '@ionic/storage';
+import {AppVersion} from '@ionic-native/app-version/ngx';
 
 @Component({
     selector: 'app-home',
@@ -32,7 +34,9 @@ export class HomePage implements OnInit {
                 private readonly platformsService: PlatformsService,
                 private readonly market: Market,
                 private readonly toast: Toast,
-                private readonly notificationsService: NotificationsService) {
+                private readonly notificationsService: NotificationsService,
+                private storage: Storage,
+                private appVersion: AppVersion) {
     }
 
     async ngOnInit() {
@@ -46,6 +50,7 @@ export class HomePage implements OnInit {
         }
 
         this.checkBatteryOptimizations();
+        this.whatsNew();
     }
 
     public shareApp(): void {
@@ -59,7 +64,7 @@ export class HomePage implements OnInit {
 
     public openStore(): void {
         this.toast.show(this.translate.instant(this.dict.OPEN_STORE).toString(),
-            '3000', 'top').subscribe(
+            '2500', 'top').subscribe(
             toast => {
                 if (toast.event === 'hide') {
                     if (this.platformsService.isAndroid()) {
@@ -82,7 +87,7 @@ export class HomePage implements OnInit {
             message: this.translate.instant(this.dict.BATTERY_OPTIMIZATIONS_EXPLAIN).toString(),
             buttons: [
                 {
-                    text:  this.translate.instant(this.dict.HAPPILY).toString(),
+                    text: this.translate.instant(this.dict.HAPPILY).toString(),
                     handler: () => {
                         // @ts-ignore
                         cordova.plugins.DozeOptimize.RequestOptimizations();
@@ -108,19 +113,39 @@ export class HomePage implements OnInit {
     }
 
     private async openNextMonthModal(): Promise<void> {
-            const alert = await this.alertController.create({
-                // cssClass: 'my-custom-class',
-                header: this.translate.instant(this.dict.BIRCAT_HALEVANA).toString(),
-                // subHeader: 'Subtitle',
-                message: this.translate.instant(this.dict.WELL_DONE_ON_BLESSING).toString(),
-                buttons: [
-                    {
-                        text:  this.translate.instant(this.dict.MEET_NEXT_MONTH).toString(),
-                    }
-                ]
-            });
+        const alert = await this.alertController.create({
+            // cssClass: 'my-custom-class',
+            header: this.translate.instant(this.dict.BIRCAT_HALEVANA).toString(),
+            // subHeader: 'Subtitle',
+            message: this.translate.instant(this.dict.WELL_DONE_ON_BLESSING).toString(),
+            buttons: [
+                {
+                    text: this.translate.instant(this.dict.MEET_NEXT_MONTH).toString(),
+                }
+            ]
+        });
 
-            await alert.present();
+        await alert.present();
+    }
+
+    private async whatsNew(): Promise<void> {
+        if (!this.platformsService.isMobile()) {
+            return;
+        }
+        const lastVersion: string = await this.storage.get(GlobalVariables.LAST_VERSION);
+        const versionNumber: string = await this.appVersion.getVersionNumber();
+        if (lastVersion === versionNumber) {
+            return;
+        }
+
+        this.storage.set(GlobalVariables.LAST_VERSION, versionNumber);
+
+        const alert = await this.alertController.create({
+            header: this.translate.instant(this.dict.WHATS_NEW).toString(),
+            message: this.translate.instant(this.dict.WHATS_NEW_MESSAGE).toString(),
+            buttons: [{text: this.translate.instant(this.dict.GREAT).toString()}],
+        });
+        await alert.present();
     }
 
 }

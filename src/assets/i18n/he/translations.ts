@@ -30,6 +30,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     LOCATION_ACCESS: 'צדיק כדי לחשב את ברכת הלבנה במיקומך אנא אשר הרשאת מיקום',
     HAPPILY: 'בשמחה',
     WHATS_NEW: 'מה חדש?',
+    WHATS_NEW_MESSAGE: 'נוספה אפשרות למסך מלא בהגדרות<br><br>נוספו הלכות ברכת הלבנה<b><br><br>הגרסה מוקדשת לעילוי נשמת יעל חלפון<b>',
     APP_SETTINGS: 'הגדרות אפלקציה',
     NOTIFICATION: 'התראות',
     LANGUAGE: 'שפה',
@@ -63,7 +64,10 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     SELECT: 'בחר',
     REMINDER_NOT_SHOWING: 'תזכורת לא מופיעה?',
     BATTERY_OPTIMIZATIONS_EXPLAIN: 'בכדי לנסות לתקן את הבעיה מומלץ לאשר את המסך הבא',
-    HALACHOT: 'הלכות',
+    HALACH_AND_AGADA: 'בהלכה ובאגדה',
+    SELECT_LIMUD: 'בחר לימוד',
+    AGADA_GATE: 'שער האגדה',
+    HALACH_GATE: 'שער ההלכה',
 };
 
 export default iwTranslationsDictionary;

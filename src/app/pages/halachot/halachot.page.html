@@ -1,22 +1,32 @@
 <ion-header>
     <ion-toolbar>
-        <ion-buttons slot="start">
+        <ion-buttons class="ion-menu-button-toolbar" slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>
-            {{ dict.HALACHOT | translate }}
+            <div class="title">
+                <div  class="title__text">
+                    {{ dict.HALACH_AND_AGADA | translate }}
+                </div>
+                <div class="title__icons">
+                    <div class="title__book">
+                        <ion-icon name="book" (click)="openLearning()"></ion-icon>
+                    </div>
+                </div>
+            </div>
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
+    <center style="margin-bottom: 20px;"><span style="font-weight:bold; font-size:18px; ">
+<span style="color:#BE32BE;"><small> בס''ד - כל הזכויות שמורות (c) למחבר </small></span></span></center>
 
-        <div>
+        <div id="agada-gate">
                 <!--$@-->
-               <a name="HtmpReportNum0004_L3"></a><center><span style="fz:48px; ">
-
-<b><u><span style="color:RGB(47,109,187);"><u>ברכת הלבנה</u></span></u></b></span><br><br></center><center><div style="line-height:100%;  width:80%; border-style:solid; border-width:10;  border-color:RGB(136,175,227); fz:27px; padding:16px; ">"אמר רבי יוחנן:
+           <center><span><b><u><span style="color:RGB(47,109,187);"><u>שער האגדה</u></span></u></b></span><br><br></center>
+            <center><div style="line-height:100%;  width:80%; border-style:solid;border-width:5px; border-color:RGB(136,175,227); padding:16px; ">"אמר רבי יוחנן:
                 <br>כל המברך על החודש בזמנו, כאילו מקבל פני שכינה"
                 <br><span style="fz:15px;  color:RGB(76,76,76) ; ">(מסכת סנהדרין מב ע"א)</span>   </div></center><br>
                 <br><p></p>בתחילת כל חודש, שהלבנה שבה ומתחדשת, תיקנו חז"ל לברך "ברכת הלבנה" - ברכת שבח והודיה לה' על חידוש הלבנה.
@@ -63,12 +73,11 @@
         </div>
 
 
-
-    <div>
+    <div id="halcha-gate" style="margin-top: 50px;">
         <!--$~-->
         <center><span style="fz:32px; ">
 <p></p>
-<b><u><span style="color:RGB(47,109,187);"><u>הלכות ברכת הלבנה</u></span><br></u></b></span></center>
+<b><u><span style="color:RGB(47,109,187);"><u>שער ההלכה</u></span><br></u></b></span></center>
         <p></p><br><span style="fz:30px; background-color:RGB(234,241,249); color:RGB(51,119,204);">&nbsp;התחדשות הלבנה </span>
         <br>
         <p></p>הלבנה מתחדשת בכל חודש וחודש, ועל התחדשותה שאט אט היא גדלה ומאירה יותר, תקנו חז"ל להודות לבורא עולם בברכת:

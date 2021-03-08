@@ -4,7 +4,6 @@ import {AlertController, MenuController, Platform, ToastController} from '@ionic
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
-import {Storage} from '@ionic/storage';
 import {Toast} from '@ionic-native/toast/ngx';
 import {CodePush, ILocalPackage} from '@ionic-native/code-push/ngx';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
@@ -30,7 +29,7 @@ export class AppComponent {
             icon: 'home'
         },
         {
-            title: 'HALACHOT',
+            title: 'HALACH_AND_AGADA',
             url: '/halachot',
             icon: 'book'
         },
@@ -55,7 +54,6 @@ export class AppComponent {
         private splashScreen: SplashScreen,
         private localNotifications: LocalNotifications,
         private geolocation: Geolocation,
-        private storage: Storage,
         private toast: Toast,
         private utilsService: UtilsService,
         private alertController: AlertController,

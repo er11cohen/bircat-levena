@@ -1,3 +1,29 @@
+ion-title {
+  .title {
+    display: flex;
+    justify-content: space-between;
+
+    &__text {
+      display: flex;
+      align-items: center;
+    }
+
+    &__icons {
+      display: flex;
+      align-items: center;
+    }
+
+    &__book {
+      display: flex;
+    }
+
+    &__book:active {
+      box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+      background-color: #bfcad5 !important;
+    }
+  }
+}
+
 ion-content {
   direction: rtl;
   -webkit-user-select: auto;

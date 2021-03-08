@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons class="ion-menu-button-toolbar" slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>  {{ dict.SETTINGS | translate }}</ion-title>
@@ -14,7 +14,7 @@
       <ion-item>
         <ion-icon name="moon-sharp" color="secondary"></ion-icon>
         <ion-label class="settings__label">{{ dict.BL_START_TIME | translate }}</ion-label>
-        <ion-select [(ngModel)]="settings.startBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
+        <ion-select [interfaceOptions]="{cssClass: 'bl-start-time'}" [(ngModel)]="settings.startBircatLevana" (ionChange)="setSettings()" cancelText="{{ dict.CANCEL | translate }}"
                     okText="{{ dict.SAVE | translate }}">
           <ion-select-option [value]="startBircatLevana.THREE">{{ dict._3_DAYS_AFTER_MOLAD | translate }}</ion-select-option>
           <ion-select-option [value]="startBircatLevana.SEVEN">{{ dict._7_DAYS_AFTER_MOLAD | translate }}</ion-select-option>

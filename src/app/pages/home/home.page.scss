@@ -1,33 +1,40 @@
-ion-title {
-  padding-inline-end: 10px;
+ion-toolbar{
 
-  .title {
-    display: flex;
-    justify-content: space-between;
-    font-size: x-large;
+  ion-title {
 
-    &__text {
+    .title {
       display: flex;
-      align-items: center;
-      font-size: 4vh;
-    }
+      justify-content: space-between;
+      font-size: x-large;
 
-    &__icons {
-      display: flex;
-      align-items: center;
-    }
+      &__text {
+        display: flex;
+        align-items: center;
+      }
 
-    &__share {
-      margin: 0 3vw;
-    }
+      &__icons {
+        display: flex;
+        align-items: center;
+      }
 
-    &__share:active,
-    &__open_store:active {
-      box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
-      background-color: #bfcad5 !important;
+      &__share {
+        margin: 0 3vw;
+        display: flex;
+      }
+
+      &__open_store {
+        display: flex;
+      }
+
+      &__share:active,
+      &__open_store:active {
+        box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+        background-color: #bfcad5 !important;
+      }
     }
   }
 }
+
 
 ion-content {
   .bircat-levana-nusach {

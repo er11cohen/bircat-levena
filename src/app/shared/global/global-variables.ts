@@ -9,4 +9,5 @@ export class GlobalVariables {
     public static readonly SCROLL_HALACHOT: string = 'scrollHalachot';
     public static readonly LINK_BL_APP_IN_STORE_ANDROID: string = 'https://play.google.com/store/apps/details?id=com.eran.bircatlevana';
     public static readonly LINK_ALL_APP_IN_STORE_ANDROID: string = 'https://play.google.com/store/search?q=pub:Eran%20Cohen';
+    public static readonly LAST_VERSION: string = 'lastVersion';
 }
