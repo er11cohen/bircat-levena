@@ -14,6 +14,7 @@ import {Location} from '@angular/common';
 import {GlobalVariables} from './shared/global/global-variables';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './services/translations-dictionary';
 import {PlatformsService} from './services/platforms.service';
+import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 @Component({
     selector: 'app-root',
@@ -63,6 +64,7 @@ export class AppComponent {
         private codePush: CodePush,
         private menu: MenuController,
         private platformsService: PlatformsService,
+        private readonly statusBar: StatusBar,
     ) {
         this.initializeApp();
     }
@@ -70,7 +72,7 @@ export class AppComponent {
     async initializeApp() {
         await this.platform.ready();
 
-        // this.statusBar.backgroundColorByHexString('427ebb');
+        this.statusBar.backgroundColorByHexString('427ebb');
         this.splashScreen.hide();
 
         this.setLanguage();
