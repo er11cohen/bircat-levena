@@ -50,7 +50,7 @@
     "cordova.plugins.diagnostic": "^6.0.2",
     "core-js": "^2.5.4",
     "kosher-zmanim": "^0.6.1",
-    "moment": "^2.26.0",
+    "moment": "^2.29.2",
     "rxjs": "^6.5.5",
     "tslib": "^1.13.0",
     "zone.js": "~0.10.3"
