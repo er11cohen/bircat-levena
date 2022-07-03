@@ -42,7 +42,7 @@ const enTranslationsDictionary = {
   XLARGE: 'Extra Large',
   XXLARGE: 'Extra Extra Large',
   SHARE_APP: 'From now on, you will not forget to bless Birkat Halevana. Use Birkat Halevana Reminder App',
-  OPEN_STORE: 'Tzadik, did you love the app? Rank us 5 stars and take part in Zikui Harabim',
+  OPEN_STORE: 'Tzadik rank us 5 stars and take part in Zikui Harabim.',
   ABOUT_TITLE: 'About',
   ABOUT: {
     AGAIN_CLOUDY: 'Was it again cloudy on Motzei Shabbat?',

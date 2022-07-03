@@ -44,7 +44,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     XLARGE: 'גדול מאוד',
     XXLARGE: 'ענק',
     SHARE_APP: 'מהיום לא שוכחים לברך את הלבנה, אפלקצית תזכורת לברכת הלבנה',
-    OPEN_STORE: 'צדיק אהבת את האפלקציה? דרג אותנו 5 כוכבים וטול חלק בזיכוי הרבים.',
+    OPEN_STORE: 'צדיק דרג אותנו 5 כוכבים וטול חלק בזיכוי הרבים.',
     ABOUT_TITLE: 'אודות',
     ABOUT: {
         AGAIN_CLOUDY: 'שוב היה מעונן במוצאי שבת?',
