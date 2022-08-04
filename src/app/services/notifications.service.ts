@@ -184,7 +184,18 @@ export class NotificationsService {
 
     private isBeforeTishaBeab(date: Date): boolean {
         const jewishCalendar = new JewishCalendar(date) as any;
-        return jewishCalendar.jewishMonth === 5 && jewishCalendar.jewishDay < 9;
+        if (jewishCalendar.jewishMonth === 5) {
+            if (jewishCalendar.jewishDay < 9) {
+                return true;
+            }
+
+            // Tisha Beab that Applies on Saturday and defer to Sunday
+            if (jewishCalendar.jewishDay === 9 && jewishCalendar.dayOfWeek === 7) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private getHebrewSaidFormat(jewishSaidCalendar): string {
