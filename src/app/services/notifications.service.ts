@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
-import {EndBircatLevana, StartBircatLevana} from '../shared/enums';
-import {getZmanimJson, JewishCalendar, Options, /*HebrewDateFormatter, Daf*/} from 'kosher-zmanim';
+import {StartBircatLevana} from '../shared/enums';
+import {getZmanimJson, JewishCalendar, Options} from 'kosher-zmanim';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {TranslateService} from '@ngx-translate/core';
 import {Storage} from '@ionic/storage';
