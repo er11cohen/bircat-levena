@@ -20,7 +20,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Device } from '@ionic-native/device/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
-import { CodePush } from '@ionic-native/code-push/ngx';
 import {from, Observable} from 'rxjs';
 
 export class WebpackTranslateLoader implements TranslateLoader {
@@ -56,7 +55,6 @@ export class WebpackTranslateLoader implements TranslateLoader {
     Device,
     Toast,
     Diagnostic,
-    CodePush,
     SocialSharing,
     Market,
     AppVersion,

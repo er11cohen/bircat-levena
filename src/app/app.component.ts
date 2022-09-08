@@ -5,7 +5,6 @@ import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {Toast} from '@ionic-native/toast/ngx';
-import {CodePush, ILocalPackage} from '@ionic-native/code-push/ngx';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Languages} from './shared/enums';
 import {UtilsService} from './services/utils.service';
@@ -61,7 +60,6 @@ export class AppComponent {
         private router: Router,
         private location: Location,
         private toastCtrl: ToastController,
-        private codePush: CodePush,
         private menu: MenuController,
         private platformsService: PlatformsService,
         private readonly statusBar: StatusBar,
@@ -78,7 +76,6 @@ export class AppComponent {
         this.setLanguage();
         this.backButtonEvent();
         this.utilsService.initialCoordinatesAndCreateBLNotifications();
-        //  this.updateCode();
     }
 
     private languageChangedSubscription(): void {
@@ -136,27 +133,5 @@ export class AppComponent {
             duration: 2000
         });
         toast.present();
-    }
-
-    private async updateCode(): Promise<void> {
-        this.codePush.sync().subscribe(
-            (syncStatus) => console.log('CODE PUSH SUCCESSFUL: ' + syncStatus),
-            (err) => console.log('CODE PUSH ERROR: ' + err)
-        );
-
-        if (this.platformsService.isIos()) {
-            return;
-        }
-
-        this.codePush.getCurrentPackage().then(async (update: ILocalPackage) => {
-            if (update && update.isFirstRun && update.description) {
-                const alert = await this.alertController.create({
-                    header: this.translate.instant(this.dict.WHATS_NEW).toString(),
-                    message: update.description,
-                    buttons: [{text: this.translate.instant(this.dict.GREAT).toString()}]
-                });
-                await alert.present();
-            }
-        });
     }
 }
