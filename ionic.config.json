@@ -1,7 +1,8 @@
 {
   "name": "bircatLevana",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

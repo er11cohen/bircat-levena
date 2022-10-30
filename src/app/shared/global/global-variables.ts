@@ -4,6 +4,7 @@ export class GlobalVariables {
     public static readonly END_BL_METHOD: string = 'endBlMethod';
     public static readonly SETTINGS: string = 'settings';
     public static readonly ALREADY_BLESSED: string = 'alreadyBlessed';
+    public static readonly ALREADY_BLESSED_MAIN_ACTION: string = 'alreadyBlessedMainAction';
     public static readonly BL_SAID_DATE: string = 'blSaidDate';
     public static readonly PREVENT_CLOSE_ALERT: string = 'preventCloseAlert';
     public static readonly SCROLL_HALACHOT: string = 'scrollHalachot';

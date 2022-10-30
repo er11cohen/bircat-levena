@@ -10,9 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ral": "npx ionic cordova run android -l",
-    "ra": "npx ionic cordova run android",
-    "ba": "npx ionic cordova build android"
+    "ral": "npx ionic cap run android -l",
+    "ra": "npx ionic cap run android",
+    "ba": "npx ionic cap build android"
   },
   "private": true,
   "dependencies": {
@@ -24,12 +24,17 @@
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
+    "@capacitor/android": "4.3.0",
+    "@capacitor/app": "4.0.1",
+    "@capacitor/core": "4.3.0",
+    "@capacitor/geolocation": "^4.0.1",
+    "@capacitor/haptics": "4.0.1",
+    "@capacitor/keyboard": "4.0.1",
+    "@capacitor/local-notifications": "^4.1.0",
+    "@capacitor/status-bar": "4.0.1",
     "@ionic-native/app-version": "^5.28.0",
     "@ionic-native/core": "^5.26.0",
     "@ionic-native/device": "^5.26.0",
-    "@ionic-native/diagnostic": "^5.27.0",
-    "@ionic-native/geolocation": "^5.26.0",
-    "@ionic-native/local-notifications": "^5.26.0",
     "@ionic-native/market": "^5.28.0",
     "@ionic-native/social-sharing": "^5.28.0",
     "@ionic-native/splash-screen": "^5.26.0",
@@ -39,8 +44,6 @@
     "@ionic/storage": "^2.3.1",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
-    "cordova-plugin-badge": "^0.8.8",
-    "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-x-toast": "^2.7.2",
     "core-js": "^2.5.4",
@@ -59,6 +62,7 @@
     "@angular/compiler": "~11.2.14",
     "@angular/compiler-cli": "~11.2.14",
     "@angular/language-service": "~11.2.14",
+    "@capacitor/cli": "^4.3.0",
     "@ionic/angular-toolkit": "^3.1.1",
     "@ionic/cli": "^6.19.0",
     "@ionic/cordova-builders": "^6.1.0",
@@ -67,20 +71,17 @@
     "@types/node": "~8.9.4",
     "codelyzer": "^6.0.2",
     "cordova": "^11.0.0",
-    "cordova-android": "^10.1.2",
     "cordova-plugin-androidx-adapter": "^1.1.3",
     "cordova-plugin-app-version": "^0.1.9",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-doze-optimize": "^0.5.4",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
-    "cordova-plugin-local-notification": "file:plugins_src/local-notification",
     "cordova-plugin-localization-strings": "^4.2.0",
     "cordova-plugin-market": "^1.2.0",
     "cordova-plugin-splashscreen": "^5.0.4",
     "cordova-plugin-statusbar": "^2.4.3",
     "cordova-plugin-x-socialsharing": "^6.0.4",
     "cordova-sqlite-storage": "^6.0.0",
-    "cordova.plugins.diagnostic": "^6.1.1",
     "es6-promise-plugin": "^4.2.2",
     "jasmine-core": "^4.1.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -102,28 +103,18 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-local-notification": {},
-      "cordova-plugin-geolocation": {
-        "GPS_REQUIRED": "true"
-      },
       "cordova-plugin-x-toast": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-market": {},
       "cordova-plugin-app-version": {},
       "cordova-plugin-doze-optimize": {},
       "cordova-plugin-androidx-adapter": {},
-      "cordova.plugins.diagnostic": {
-        "ANDROIDX_VERSION": "1.0.0",
-        "ANDROIDX_APPCOMPAT_VERSION": "1.3.1"
-      },
       "cordova-sqlite-storage": {},
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-localization-strings": {
         "TRANSLATION_PATH": "translations/app/"
       }
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   }
 }

@@ -2,8 +2,6 @@ import {Component, Inject} from '@angular/core';
 
 import {AlertController, MenuController, Platform, ToastController} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
-import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
-import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {Toast} from '@ionic-native/toast/ngx';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Languages} from './shared/enums';
@@ -52,8 +50,6 @@ export class AppComponent {
         public translate: TranslateService,
         private platform: Platform,
         private splashScreen: SplashScreen,
-        private localNotifications: LocalNotifications,
-        private geolocation: Geolocation,
         private toast: Toast,
         private utilsService: UtilsService,
         private alertController: AlertController,

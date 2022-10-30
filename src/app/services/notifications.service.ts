@@ -1,11 +1,17 @@
 import {Inject, Injectable} from '@angular/core';
 import {StartBircatLevana} from '../shared/enums';
 import {getZmanimJson, JewishCalendar, Options} from 'kosher-zmanim';
-import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {TranslateService} from '@ngx-translate/core';
 import {Storage} from '@ionic/storage';
 import * as moment from 'moment';
 import {Moment} from 'moment';
+import {
+    LocalNotification,
+    LocalNotificationActionPerformed,
+    LocalNotifications,
+    LocalNotificationSchema
+} from '@capacitor/local-notifications';
+import {PendingResult, ScheduleOptions} from '@capacitor/local-notifications/dist/esm/definitions';
 
 import {SettingsService} from './settings.service';
 import {Settings} from '../models/settings';
@@ -20,10 +26,10 @@ import {PlatformsService} from './platforms.service';
 export class NotificationsService {
 
     public settings: Settings;
+    private notifications: LocalNotificationSchema[];
     private readonly months = 6; //////// 2
 
     constructor(
-        private readonly localNotifications: LocalNotifications,
         @Inject(TRANSLATIONS_DICTIONARY)
         public readonly dict: TranslationsDictionary,
         private readonly translate: TranslateService,
@@ -34,11 +40,15 @@ export class NotificationsService {
     }
 
     public async createBLNotifications(alreadyBlessed: boolean): Promise<void> {
-
+        this.notifications = [];
         const settings = this.settingsService.getSettings();
 
         if (this.platformsService.isMobile()) {
-            await this.localNotifications.cancelAll();
+            const pendingList: PendingResult = await LocalNotifications.getPending();
+
+            if (pendingList?.notifications?.length > 0) {
+                await LocalNotifications.cancel(pendingList);
+            }
         }
         // @ts-ignore
         const launchDetails = (window.cordova?.plugins as any)?.notification?.local?.launchDetails;
@@ -95,6 +105,14 @@ export class NotificationsService {
             this.setNotification(moment(new Date(tchilas)), moment(new Date(end15Days)), moment(new Date(endBetweenMoldos)));
         }
 
+        if (this.notifications.length > 0) {
+            await LocalNotifications.schedule(
+                {
+                    notifications: this.notifications,
+                    // notifications: [this.notifications[0]],
+                } as ScheduleOptions);
+        }
+
     }
 
     // for the button "blessed" in home.html
@@ -134,6 +152,12 @@ export class NotificationsService {
                 continue;
             }
 
+            // start.add(-9, 'days'); ///////////////////
+
+            if (start.isBefore(new Date())) {
+                continue;
+            }
+
             if (start.isBefore(end15Days) && start.isBefore(endBetweenMoldos)) {
                 this.createBlNotification(start.toDate(), false);
             } else if (start.isBefore(end15Days) && start.isAfter(endBetweenMoldos)) {
@@ -154,7 +178,6 @@ export class NotificationsService {
     }
 
     private createBlNotification(date: Date, isDispute: boolean): void {
-        console.log(date);
         let text: string;
         if (isDispute) {
             text = this.translate.instant(this.dict.DISPUTE_NIGHT).toString();
@@ -165,21 +188,36 @@ export class NotificationsService {
         if (!this.platformsService.isMobile()) {
             return;
         }
-        this.localNotifications.schedule({
-            id: new Date().getTime(),
-            sound: null,
-            foreground: true,
-            priority: 2,
-            title: this.translate.instant(this.dict.REMINDER_TO_BIRCAT_HALEVANA).toString(),
-            text,
-            trigger: {at: date},
-            // trigger: {at: new Date(new Date().getTime() + 5000)},
-            actions: [{
-                id: GlobalVariables.ALREADY_BLESSED,
-                title: this.translate.instant(this.dict.ALREADY_BLESSED).toString(),
-                launch: true
-            }]
+
+        LocalNotifications.registerActionTypes({
+            types: [
+                {
+                    id: GlobalVariables.ALREADY_BLESSED_MAIN_ACTION,
+                    actions: [
+                        {
+                            id: GlobalVariables.ALREADY_BLESSED,
+                            title: this.translate.instant(this.dict.ALREADY_BLESSED).toString(),
+                        },
+                    ]
+                }
+            ]
         });
+
+        console.log(date);
+
+        this.notifications.push({
+            id: new Date().getTime(),
+            title: this.translate.instant(this.dict.REMINDER_TO_BIRCAT_HALEVANA).toString(),
+            body: text,
+            smallIcon: 'ic_launcher',
+            vibration: true,
+            schedule: {
+                at: date,
+                // at: new Date(new Date().getTime() + 1000),
+                allowWhileIdle: true,
+            },
+            actionTypeId: GlobalVariables.ALREADY_BLESSED_MAIN_ACTION,
+        } as LocalNotificationSchema);
     }
 
     private isBeforeTishaBeab(date: Date): boolean {

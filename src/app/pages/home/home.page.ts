@@ -13,6 +13,7 @@ import {NotificationsService} from '../../services/notifications.service';
 import {PlatformsService} from '../../services/platforms.service';
 import {Storage} from '@ionic/storage';
 import {AppVersion} from '@ionic-native/app-version/ngx';
+import {LocalNotificationActionPerformed, LocalNotifications} from '@capacitor/local-notifications';
 
 @Component({
     selector: 'app-home',
@@ -43,11 +44,11 @@ export class HomePage implements OnInit {
         this.settings = this.settingsService.getSettings();
         this.isBlessed = await this.notificationsService.isBLAlreadySaid();
 
-        // @ts-ignore
-        const launchDetails = (window.cordova?.plugins as any)?.notification?.local?.launchDetails;
-        if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED) {
-            this.openNextMonthModal();
-        }
+        LocalNotifications.addListener('localNotificationActionPerformed', (notification: LocalNotificationActionPerformed) => {
+            if (notification?.actionId === GlobalVariables.ALREADY_BLESSED) {
+                this.blessed();
+            }
+        });
 
         this.checkBatteryOptimizations();
         this.whatsNew();
