@@ -39,8 +39,7 @@ export class CoordinatesService {
                     await this.getLocation();
                 }
             } catch (e) {
-                this.setHarHabayisCoordinates();
-                this.resolve();
+                this.fallbackCoordinates();
             }
         });
     }
@@ -79,12 +78,16 @@ export class CoordinatesService {
                 this.resolve();
             }
         } catch (e) {
-            this.coordinates = await this.storage.get(GlobalVariables.LAST_COORD);
-            if (!this.coordinates) {
-                this.setHarHabayisCoordinates();
-            }
-            this.resolve();
+            this.fallbackCoordinates();
         }
+    }
+
+    private async fallbackCoordinates(): Promise<void> {
+        this.coordinates = await this.storage.get(GlobalVariables.LAST_COORD);
+        if (!this.coordinates) {
+            this.setHarHabayisCoordinates();
+        }
+        this.resolve();
     }
 
     private setHarHabayisCoordinates(): void {
