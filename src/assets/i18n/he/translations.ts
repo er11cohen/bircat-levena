@@ -30,7 +30,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     LOCATION_ACCESS: 'צדיק כדי לחשב את ברכת הלבנה במיקומך אנא אשר הרשאת מיקום',
     HAPPILY: 'בשמחה',
     WHATS_NEW: 'מה חדש?',
-    WHATS_NEW_MESSAGE: 'נוספה אפשרות למסך מלא בהגדרות<br><br>נוספו הלכות ברכת הלבנה<b><br><br>הגרסה מוקדשת לעילוי נשמת יעל חלפון<b>',
+    WHATS_NEW_MESSAGE: 'התאמה לאנדרואיד 12<b><br><br>הגרסה מוקדשת לעילוי נשמת חיים בן כרמלה<b>',
     APP_SETTINGS: 'הגדרות אפלקציה',
     NOTIFICATION: 'התראות',
     LANGUAGE: 'שפה',

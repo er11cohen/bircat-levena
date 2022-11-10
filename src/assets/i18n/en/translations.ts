@@ -28,7 +28,7 @@ const enTranslationsDictionary = {
   LOCATION_ACCESS: 'Tzadik, in order to calculate the time for Birkat Halevana in your location, access to the device location is required',
   HAPPILY: 'With pleasure',
   WHATS_NEW: 'What\'s new',
-  WHATS_NEW_MESSAGE: 'Added full-screen option in settings<br><br>Added Hilchot Birkat Halevana',
+  WHATS_NEW_MESSAGE: 'Added compatibility to Android 12',
   APP_SETTINGS: 'App settings',
   NOTIFICATION: 'Notifications',
   LANGUAGE: 'Language',
