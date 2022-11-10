@@ -1,2 +1,3 @@
 /build/*
 !/build/.npmkeep
+AndroidManifest.xml.orig
