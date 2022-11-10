@@ -9,9 +9,6 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { Market } from '@ionic-native/market/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 
@@ -20,7 +17,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Device } from '@ionic-native/device/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
-import { CodePush } from '@ionic-native/code-push/ngx';
 import {from, Observable} from 'rxjs';
 
 export class WebpackTranslateLoader implements TranslateLoader {
@@ -51,12 +47,8 @@ export class WebpackTranslateLoader implements TranslateLoader {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    LocalNotifications,
-    Geolocation,
     Device,
     Toast,
-    Diagnostic,
-    CodePush,
     SocialSharing,
     Market,
     AppVersion,

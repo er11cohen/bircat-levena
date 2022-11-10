@@ -1,12 +1,12 @@
 import {Inject, Injectable} from '@angular/core';
-import {Geolocation, Geoposition} from '@ionic-native/geolocation/ngx';
-import {Diagnostic} from '@ionic-native/diagnostic/ngx';
+import {Geolocation as Geolocation} from '@capacitor/geolocation';
 import {GlobalVariables} from '../shared/global/global-variables';
 import {Storage} from '@ionic/storage';
 import {BLCoordinates} from '../models/coordinates';
 import {AlertController} from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './translations-dictionary';
+import {PermissionStatus, Position} from '@capacitor/geolocation/dist/esm/definitions';
 
 @Injectable({
     providedIn: 'root'
@@ -16,9 +16,7 @@ export class CoordinatesService {
     private resolve: any;
 
     constructor(
-        private readonly geolocation: Geolocation,
         private readonly storage: Storage,
-        private readonly diagnostic: Diagnostic,
         private readonly alertController: AlertController,
         private readonly translate: TranslateService,
         @Inject(TRANSLATIONS_DICTIONARY)
@@ -33,15 +31,15 @@ export class CoordinatesService {
         return new Promise<void>(async (resolve, reject) => {
             this.resolve = resolve;
             try {
-                const authorized: boolean = await this.diagnostic.isLocationAuthorized();
-                if (!authorized) {
+                const authorized: PermissionStatus =  await Geolocation.checkPermissions();
+
+                if(authorized.coarseLocation !== 'granted') {
                     await this.showPermissionRequestPopup();
                 } else {
                     await this.getLocation();
                 }
             } catch (e) {
-                this.setHarHabayisCoordinates();
-                this.resolve();
+                this.fallbackCoordinates();
             }
         });
     }
@@ -70,7 +68,7 @@ export class CoordinatesService {
 
     private async getLocation(): Promise<void> {
         try {
-            const position: Geoposition = await this.geolocation.getCurrentPosition({timeout: 5000});
+            const position: Position = await Geolocation.getCurrentPosition({enableHighAccuracy: false, timeout: 5000});
             if (position) {
                 this.coordinates = {
                     latitude: position.coords.latitude,
@@ -80,12 +78,16 @@ export class CoordinatesService {
                 this.resolve();
             }
         } catch (e) {
-            this.coordinates = await this.storage.get(GlobalVariables.LAST_COORD);
-            if (!this.coordinates) {
-                this.setHarHabayisCoordinates();
-            }
-            this.resolve();
+            this.fallbackCoordinates();
         }
+    }
+
+    private async fallbackCoordinates(): Promise<void> {
+        this.coordinates = await this.storage.get(GlobalVariables.LAST_COORD);
+        if (!this.coordinates) {
+            this.setHarHabayisCoordinates();
+        }
+        this.resolve();
     }
 
     private setHarHabayisCoordinates(): void {

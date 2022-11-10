@@ -28,7 +28,7 @@ const enTranslationsDictionary = {
   LOCATION_ACCESS: 'Tzadik, in order to calculate the time for Birkat Halevana in your location, access to the device location is required',
   HAPPILY: 'With pleasure',
   WHATS_NEW: 'What\'s new',
-  WHATS_NEW_MESSAGE: 'Added full-screen option in settings<br><br>Added Hilchot Birkat Halevana',
+  WHATS_NEW_MESSAGE: 'Added compatibility to Android 12',
   APP_SETTINGS: 'App settings',
   NOTIFICATION: 'Notifications',
   LANGUAGE: 'Language',
@@ -42,7 +42,7 @@ const enTranslationsDictionary = {
   XLARGE: 'Extra Large',
   XXLARGE: 'Extra Extra Large',
   SHARE_APP: 'From now on, you will not forget to bless Birkat Halevana. Use Birkat Halevana Reminder App',
-  OPEN_STORE: 'Tzadik, did you love the app? Rank us 5 stars and take part in Zikui Harabim',
+  OPEN_STORE: 'Tzadik rank us 5 stars and take part in Zikui Harabim.',
   ABOUT_TITLE: 'About',
   ABOUT: {
     AGAIN_CLOUDY: 'Was it again cloudy on Motzei Shabbat?',

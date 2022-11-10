@@ -8,8 +8,7 @@ export class PlatformsService {
     }
 
     public isMobile(): boolean {
-        // return true; //////////////////////////////
-         return this.platform.is('cordova');
+         return this.platform.is('hybrid');
     }
 
     public isAndroid(): boolean {

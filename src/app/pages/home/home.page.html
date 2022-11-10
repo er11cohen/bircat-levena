@@ -27,6 +27,12 @@
             {{ dict.REMINDER_NOT_SHOWING | translate }}
         </ion-button>
     </div>
+    <div class="button-wrapper" *ngIf="!isBlessed">
+        <ion-button (click)="blessed()">
+            <ion-icon name="checkmark-sharp"></ion-icon>
+            {{ dict.BLESSED | translate }}
+        </ion-button>
+    </div>
     <div class="bircat-levana-nusach">
         <edot-mizrach *ngIf="settings.nusach === nusach.EDOT_MIZRACH"></edot-mizrach>
         <askenaz *ngIf="settings.nusach === nusach.ASKENAZ"></askenaz>
