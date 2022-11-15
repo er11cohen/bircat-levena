@@ -50,8 +50,7 @@ export class NotificationsService {
                 await LocalNotifications.cancel(pendingList);
             }
         }
-        // @ts-ignore
-        const launchDetails = (window.cordova?.plugins as any)?.notification?.local?.launchDetails;
+
         let index = 0;
 
         const jewishSaidCalendar = new JewishCalendar(new Date()) as any;
@@ -60,10 +59,7 @@ export class NotificationsService {
         let blSaidDateArr: Array<string> = blSaidDate ? blSaidDate : [];
         if (blSaidDateArr.includes(hebrewDate)) {
             index = 1;
-        } else if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED || alreadyBlessed) {
-            if (launchDetails?.action === GlobalVariables.ALREADY_BLESSED) {
-                launchDetails.action = null;
-            }
+        } else if (alreadyBlessed) {
             blSaidDateArr.push(hebrewDate);
             // clear old years
             blSaidDateArr = blSaidDateArr.filter((blDate: string) => {
