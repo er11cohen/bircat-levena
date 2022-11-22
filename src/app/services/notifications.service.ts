@@ -5,12 +5,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {Storage} from '@ionic/storage';
 import * as moment from 'moment';
 import {Moment} from 'moment';
-import {
-    LocalNotification,
-    LocalNotificationActionPerformed,
-    LocalNotifications,
-    LocalNotificationSchema
-} from '@capacitor/local-notifications';
+import {LocalNotifications, LocalNotificationSchema} from '@capacitor/local-notifications';
 import {PendingResult, ScheduleOptions} from '@capacitor/local-notifications/dist/esm/definitions';
 
 import {SettingsService} from './settings.service';
