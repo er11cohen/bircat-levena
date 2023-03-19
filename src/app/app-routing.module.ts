@@ -23,11 +23,16 @@ const routes: Routes = [
         loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule),
         canActivate: [DataReadyGuard],
     },
-  {
-    path: 'halachot',
-    loadChildren: () => import('./pages/halachot/halachot.module').then( m => m.HalachotPageModule),
-    canActivate: [DataReadyGuard],
-  }
+    {
+        path: 'halachot',
+        loadChildren: () => import('./pages/halachot/halachot.module').then(m => m.HalachotPageModule),
+        canActivate: [DataReadyGuard],
+    },
+    {
+        path: 'sky-status',
+        loadChildren: () => import('./pages/sky-status/sky-status.module').then(m => m.SkyStatusPageModule),
+        canActivate: [DataReadyGuard],
+    }
 ];
 
 @NgModule({

@@ -32,6 +32,11 @@ export class AppComponent {
             icon: 'book'
         },
         {
+            title: 'SKY_STATUS_TITLE',
+            url: '/sky-status',
+            icon: 'cloud'
+        },
+        {
             title: 'ABOUT_TITLE',
             url: '/about',
             icon: 'help-circle'

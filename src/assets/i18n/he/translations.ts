@@ -68,6 +68,8 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     SELECT_LIMUD: 'בחר לימוד',
     AGADA_GATE: 'שער האגדה',
     HALACH_GATE: 'שער ההלכה',
+    SKY_STATUS_TITLE: 'מצב השמיים',
+    NEXT_NIGHTS: 'הלילות הקרובים - אחוז עננות'
 };
 
 export default iwTranslationsDictionary;

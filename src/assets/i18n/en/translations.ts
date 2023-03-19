@@ -66,6 +66,8 @@ const enTranslationsDictionary = {
   SELECT_LIMUD: 'Select learning',
   AGADA_GATE: 'Agada gate',
   HALACH_GATE: 'Halacha gate',
+  SKY_STATUS_TITLE: 'Sky status',
+  NEXT_NIGHTS: 'Next nights - Cloudy precentage',
 };
 
 export default enTranslationsDictionary;
