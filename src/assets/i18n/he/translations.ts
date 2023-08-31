@@ -31,7 +31,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     NOTIFICATIONS_PERMISSION: 'צדיק כדי להציג תזכורות לברכת הלבנה אנא אשר הרשאת התראות',
     HAPPILY: 'בשמחה',
     WHATS_NEW: 'מה חדש?',
-    WHATS_NEW_MESSAGE: 'התאמה לאנדרואיד 12<b><br><br>הגרסה מוקדשת לעילוי נשמת חיים בן כרמלה<b>',
+    WHATS_NEW_MESSAGE: 'התאמה לאנדרואיד 13<b><br><br>הגרסה מוקדשת לעילוי נשמת חיים בן כרמלה<b>',
     APP_SETTINGS: 'הגדרות אפלקציה',
     NOTIFICATION: 'התראות',
     LANGUAGE: 'שפה',
