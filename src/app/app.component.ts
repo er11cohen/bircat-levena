@@ -76,7 +76,7 @@ export class AppComponent {
 
         this.setLanguage();
         this.backButtonEvent();
-        this.utilsService.initialCoordinatesAndCreateBLNotifications();
+        this.utilsService.initialCoordinatesAndInitialBLNotifications();
     }
 
     private languageChangedSubscription(): void {

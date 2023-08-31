@@ -33,7 +33,7 @@ export class SettingsPage implements OnInit {
             !== this.settingsService.getSettings().startBircatLevana;
         this.settingsService.setSettings(this.settings);
         if (isStartBircatLevanaChanged) {
-            this.notificationsService.createBLNotifications(false);
+            this.notificationsService.initialBLNotifications(false);
         }
     }
 
