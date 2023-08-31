@@ -28,6 +28,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     WELL_DONE_ON_BLESSING: 'ישר כח צדיק על הברכה',
     PRESS_AGAIN_TO_EXIT: 'לחץ שוב ליציאה',
     LOCATION_ACCESS: 'צדיק כדי לחשב את ברכת הלבנה במיקומך אנא אשר הרשאת מיקום',
+    NOTIFICATIONS_PERMISSION: 'צדיק כדי להציג תזכורות לברכת הלבנה אנא אשר הרשאת התראות',
     HAPPILY: 'בשמחה',
     WHATS_NEW: 'מה חדש?',
     WHATS_NEW_MESSAGE: 'התאמה לאנדרואיד 12<b><br><br>הגרסה מוקדשת לעילוי נשמת חיים בן כרמלה<b>',

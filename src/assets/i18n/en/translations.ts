@@ -26,6 +26,7 @@ const enTranslationsDictionary = {
   WELL_DONE_ON_BLESSING: 'Well done, Tzadik',
   PRESS_AGAIN_TO_EXIT: 'Press again to exit',
   LOCATION_ACCESS: 'Tzadik, in order to calculate the time for Birkat Halevana in your location, access to the device location is required',
+  NOTIFICATIONS_PERMISSION: 'Tzadik, in order to show notifications for Birkat Halevana, access to the notifications permission is required',
   HAPPILY: 'With pleasure',
   WHATS_NEW: 'What\'s new',
   WHATS_NEW_MESSAGE: 'Added compatibility to Android 12',

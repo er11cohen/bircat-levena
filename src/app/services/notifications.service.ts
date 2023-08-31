@@ -6,7 +6,7 @@ import {Storage} from '@ionic/storage';
 import * as moment from 'moment';
 import {Moment} from 'moment';
 import {LocalNotifications, LocalNotificationSchema} from '@capacitor/local-notifications';
-import {PendingResult, ScheduleOptions} from '@capacitor/local-notifications/dist/esm/definitions';
+import {PendingResult, PermissionStatus, ScheduleOptions} from '@capacitor/local-notifications/dist/esm/definitions';
 
 import {SettingsService} from './settings.service';
 import {Settings} from '../models/settings';
@@ -14,6 +14,7 @@ import {CoordinatesService} from './coordinates.service';
 import {GlobalVariables} from '../shared/global/global-variables';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './translations-dictionary';
 import {PlatformsService} from './platforms.service';
+import {AlertController} from '@ionic/angular';
 
 @Injectable({
     providedIn: 'root'
@@ -22,6 +23,7 @@ export class NotificationsService {
 
     public settings: Settings;
     private notifications: LocalNotificationSchema[];
+    private ids: Array<number>;
     private readonly months = 6; //////// 2
 
     constructor(
@@ -31,11 +33,43 @@ export class NotificationsService {
         private readonly storage: Storage,
         private readonly settingsService: SettingsService,
         private readonly coordinatesService: CoordinatesService,
-        private readonly platformsService: PlatformsService) {
+        private readonly platformsService: PlatformsService,
+        private readonly alertController: AlertController,) {
     }
 
-    public async createBLNotifications(alreadyBlessed: boolean): Promise<void> {
+    public async initialBLNotifications(alreadyBlessed: boolean): Promise<void> {
+        const authorized: PermissionStatus = await LocalNotifications.checkPermissions();
+        if (authorized.display === 'granted') {
+            await this.createBLNotifications(alreadyBlessed);
+        } else {
+            await this.showPermissionNotificationsRequestPopup(alreadyBlessed);
+        }
+    }
+
+    private async showPermissionNotificationsRequestPopup(alreadyBlessed: boolean): Promise<void> {
+        const alert = await this.alertController.create({
+            id: GlobalVariables.PREVENT_CLOSE_ALERT,
+            header: this.translate.instant(this.dict.BIRCAT_HALEVANA).toString(),
+            backdropDismiss: false,
+            message: this.translate.instant(this.dict.NOTIFICATIONS_PERMISSION).toString(),
+            buttons: [
+                {
+                    text: this.translate.instant(this.dict.HAPPILY).toString(),
+                    handler: async () => {
+                        const authorized: PermissionStatus = await LocalNotifications.requestPermissions();
+                        if (authorized.display === 'granted') {
+                            await this.createBLNotifications(alreadyBlessed);
+                        }
+                    }
+                }
+            ]
+        });
+        await alert.present();
+    }
+
+    private async createBLNotifications(alreadyBlessed: boolean): Promise<void> {
         this.notifications = [];
+        this.ids = [];
         const settings = this.settingsService.getSettings();
 
         if (this.platformsService.isMobile()) {
@@ -103,7 +137,6 @@ export class NotificationsService {
                     // notifications: [this.notifications[0]],
                 } as ScheduleOptions);
         }
-
     }
 
     // for the button "blessed" in home.html
@@ -196,8 +229,16 @@ export class NotificationsService {
 
         console.log(date);
 
+        let id: number;
+        do {
+            id = Math.floor(Math.random() * 10000) + 1;
+        }
+        while (this.ids.includes(id));
+
+        this.ids.push(id);
+
         this.notifications.push({
-            id: new Date().getTime(),
+            id,
             title: this.translate.instant(this.dict.REMINDER_TO_BIRCAT_HALEVANA).toString(),
             body: text,
             smallIcon: 'ic_launcher',

@@ -77,7 +77,7 @@ export class HomePage implements OnInit {
     }
 
     public blessed(): void {
-        this.notificationsService.createBLNotifications(true);
+        this.notificationsService.initialBLNotifications(true);
         this.openNextMonthModal();
         this.isBlessed = true;
     }

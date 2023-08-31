@@ -22,13 +22,13 @@ export class UtilsService {
         await Promise.all([
             this.translate.get(this.dict.BL_START_TIME).toPromise(),
             this.settingsService.initialSettings()
-            ]);
+        ]);
     }
 
-    public async initialCoordinatesAndCreateBLNotifications(): Promise<void> {
+    public async initialCoordinatesAndInitialBLNotifications(): Promise<void> {
         await this.translate.get(this.dict.BL_START_TIME).toPromise();
         await this.settingsService.initialSettings();
         await this.coordinatesService.initialCoordinates();
-        await this.notificationsService.createBLNotifications(false);
+        await this.notificationsService.initialBLNotifications(false);
     }
 }
