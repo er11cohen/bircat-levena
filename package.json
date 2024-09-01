@@ -76,7 +76,6 @@
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-doze-optimize": "^0.5.4",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
-    "cordova-plugin-localization-strings": "^4.2.0",
     "cordova-plugin-market": "^1.2.0",
     "cordova-plugin-splashscreen": "^5.0.4",
     "cordova-plugin-statusbar": "^2.4.3",
@@ -110,10 +109,7 @@
       "cordova-plugin-doze-optimize": {},
       "cordova-plugin-androidx-adapter": {},
       "cordova-sqlite-storage": {},
-      "cordova-plugin-x-socialsharing": {},
-      "cordova-plugin-localization-strings": {
-        "TRANSLATION_PATH": "translations/app/"
-      }
+      "cordova-plugin-x-socialsharing": {}
     },
     "platforms": []
   }
