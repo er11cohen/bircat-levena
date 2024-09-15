@@ -13,7 +13,8 @@ import {NotificationsService} from '../../services/notifications.service';
 import {PlatformsService} from '../../services/platforms.service';
 import {Storage} from '@ionic/storage';
 import {AppVersion} from '@ionic-native/app-version/ngx';
-import {LocalNotificationActionPerformed, LocalNotifications} from '@capacitor/local-notifications';
+import {LocalNotifications} from '@capacitor/local-notifications';
+import {ActionPerformed} from '@capacitor/local-notifications/dist/esm/definitions';
 
 @Component({
     selector: 'app-home',
@@ -44,7 +45,7 @@ export class HomePage implements OnInit {
         this.settings = this.settingsService.getSettings();
         this.isBlessed = await this.notificationsService.isBLAlreadySaid();
 
-        LocalNotifications.addListener('localNotificationActionPerformed', (notification: LocalNotificationActionPerformed) => {
+        LocalNotifications.addListener('localNotificationActionPerformed', (notification: ActionPerformed) => {
             if (notification?.actionId === GlobalVariables.ALREADY_BLESSED) {
                 this.blessed();
             }
