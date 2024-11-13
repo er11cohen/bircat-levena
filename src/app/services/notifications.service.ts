@@ -151,6 +151,14 @@ export class NotificationsService {
                     notifications: this.notifications,
                     // notifications: [this.notifications[0]],
                 } as ScheduleOptions);
+
+            /////
+            // const notifyArr: Array<string> = [];
+            // this.notifications.map(n => {
+            //     notifyArr.push(n.schedule.at.toString() + '\n');
+            // });
+            // alert(notifyArr);
+            //////////////
         }
     }
 
