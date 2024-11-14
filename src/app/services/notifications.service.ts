@@ -6,7 +6,13 @@ import {Storage} from '@ionic/storage';
 import * as moment from 'moment';
 import {Moment} from 'moment';
 import {LocalNotifications, LocalNotificationSchema} from '@capacitor/local-notifications';
-import {PendingResult, PermissionStatus, ScheduleOptions} from '@capacitor/local-notifications/dist/esm/definitions';
+import {
+    CancelOptions,
+    LocalNotificationDescriptor, PendingLocalNotificationSchema,
+    PendingResult,
+    PermissionStatus,
+    ScheduleOptions
+} from '@capacitor/local-notifications/dist/esm/definitions';
 
 import {SettingsService} from './settings.service';
 import {Settings} from '../models/settings';
@@ -76,7 +82,16 @@ export class NotificationsService {
             const pendingList: PendingResult = await LocalNotifications.getPending();
 
             if (pendingList?.notifications?.length > 0) {
-                await LocalNotifications.cancel(pendingList);
+                const LocalNotificationDescriptorArr: Array<LocalNotificationDescriptor> = pendingList.notifications.map(
+                    (notification: PendingLocalNotificationSchema) => {
+                        return {id: notification.id} as LocalNotificationDescriptor;
+                    });
+
+                const CancelOptionsObj = {
+                    notifications: LocalNotificationDescriptorArr
+                } as CancelOptions;
+
+                await LocalNotifications.cancel(CancelOptionsObj);
             }
         }
 
@@ -136,6 +151,14 @@ export class NotificationsService {
                     notifications: this.notifications,
                     // notifications: [this.notifications[0]],
                 } as ScheduleOptions);
+
+            /////
+            // const notifyArr: Array<string> = [];
+            // this.notifications.map(n => {
+            //     notifyArr.push(n.schedule.at.toString() + '\n');
+            // });
+            // alert(notifyArr);
+            //////////////
         }
     }
 

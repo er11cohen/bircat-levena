@@ -12,6 +12,7 @@ import {PermissionStatus, Position} from '@capacitor/geolocation/dist/esm/defini
     providedIn: 'root'
 })
 export class CoordinatesService {
+    private readonly TIMEOUT = 5000;
     private coordinates: BLCoordinates;
     private resolve: any;
 
@@ -36,7 +37,7 @@ export class CoordinatesService {
                 if(authorized.coarseLocation !== 'granted') {
                     await this.showPermissionRequestPopup();
                 } else {
-                    await this.getLocation();
+                    await this.getLocationWithTimeout();
                 }
             } catch (e) {
                 this.fallbackCoordinates();
@@ -58,7 +59,7 @@ export class CoordinatesService {
                 {
                     text: this.translate.instant(this.dict.HAPPILY).toString(),
                     handler: async () => {
-                        await this.getLocation();
+                        await this.getLocationWithTimeout();
                     }
                 }
             ]
@@ -66,9 +67,22 @@ export class CoordinatesService {
         await alert.present();
     }
 
-    private async getLocation(): Promise<void> {
+    private async getLocationWithTimeout(): Promise<void> {
+        let timeoutId: number;
+        let isTimeout = false;
+        // @ts-ignore
+        timeoutId = setTimeout(() => {
+            isTimeout = true;
+            this.fallbackCoordinates();
+        }, this.TIMEOUT);
+
         try {
-            const position: Position = await Geolocation.getCurrentPosition({enableHighAccuracy: false, timeout: 5000});
+            const position: Position = await Geolocation.getCurrentPosition({enableHighAccuracy: false, timeout: this.TIMEOUT});
+            if (isTimeout) {
+                return;
+            }
+            clearTimeout(timeoutId);
+
             if (position) {
                 this.coordinates = {
                     latitude: position.coords.latitude,
