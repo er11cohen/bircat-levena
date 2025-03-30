@@ -8,7 +8,6 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Market } from '@ionic-native/market/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 
@@ -44,7 +43,6 @@ export class WebpackTranslateLoader implements TranslateLoader {
     })
   ],
   providers: [
-    StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Device,

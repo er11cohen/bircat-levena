@@ -2,7 +2,6 @@ import {Component, Inject} from '@angular/core';
 
 import {AlertController, MenuController, Platform, ToastController} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
-import {Toast} from '@ionic-native/toast/ngx';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Languages} from './shared/enums';
 import {UtilsService} from './services/utils.service';
@@ -10,8 +9,8 @@ import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {GlobalVariables} from './shared/global/global-variables';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './services/translations-dictionary';
-import {PlatformsService} from './services/platforms.service';
-import {StatusBar} from '@ionic-native/status-bar/ngx';
+import {StatusBar, Style} from '@capacitor/status-bar';
+import {EdgeToEdge} from '@capawesome/capacitor-android-edge-to-edge-support';
 
 @Component({
     selector: 'app-root',
@@ -50,15 +49,12 @@ export class AppComponent {
         public translate: TranslateService,
         private platform: Platform,
         private splashScreen: SplashScreen,
-        private toast: Toast,
         private utilsService: UtilsService,
         private alertController: AlertController,
         private router: Router,
         private location: Location,
         private toastCtrl: ToastController,
         private menu: MenuController,
-        private platformsService: PlatformsService,
-        private readonly statusBar: StatusBar,
     ) {
         this.initializeApp();
     }
@@ -66,11 +62,16 @@ export class AppComponent {
     async initializeApp() {
         await this.platform.ready();
 
-        this.statusBar.backgroundColorByHexString('427ebb');
+        EdgeToEdge.setBackgroundColor({color: '#427ebb'});
+        StatusBar.setStyle({style: Style.Dark});
+        // for android 14 and below
+        StatusBar.setBackgroundColor({color: '#427ebb'});
+
         this.splashScreen.hide();
 
         this.setLanguage();
         this.backButtonEvent();
+
         this.utilsService.initialCoordinatesAndInitialBLNotifications();
     }
 

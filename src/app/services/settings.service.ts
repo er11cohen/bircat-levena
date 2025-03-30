@@ -4,7 +4,7 @@ import {GlobalVariables} from '../shared/global/global-variables';
 import {Storage} from '@ionic/storage';
 import {FontSize, Languages, Nusach, StartBircatLevana} from '../shared/enums';
 import {TranslateService} from '@ngx-translate/core';
-import {StatusBar} from '@ionic-native/status-bar/ngx';
+import {StatusBar} from '@capacitor/status-bar';
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +15,6 @@ export class SettingsService {
 
     constructor(
         private readonly storage: Storage,
-        private readonly statusBar: StatusBar,
         private readonly translate: TranslateService,
     ) {
     }
@@ -71,9 +70,9 @@ export class SettingsService {
         document.documentElement.style.fontSize = this.settings.fontSize;
 
         if (this.settings.fullScreen) {
-            this.statusBar.hide();
+            StatusBar.hide();
         } else {
-            this.statusBar.show();
+            StatusBar.show();
         }
     }
 }
