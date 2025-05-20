@@ -18,6 +18,7 @@ export enum Nusach {
     ASKENAZ = 'ASKENAZ',
     EDOT_MIZRACH = 'EDOT_MIZRACH',
     TEIMAN = 'TEIMAN',
+    CHABAD = 'CHABAD',
 }
 
 export enum FontSize {

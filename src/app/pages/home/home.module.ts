@@ -6,6 +6,7 @@ import {EdotMizrachComponent} from './edot-mizrach/edot-mizrach.component';
 import {AskenazComponent} from './askenaz/askenaz.component';
 import {SfardComponent} from './sfard/sfard.component';
 import {TeimanComponent} from './teiman/teiman.component';
+import {ChabadComponent} from './chabad/chabad.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {TeimanComponent} from './teiman/teiman.component';
         EdotMizrachComponent,
         AskenazComponent,
         SfardComponent,
-        TeimanComponent
+        TeimanComponent,
+        ChabadComponent,
     ]
 })
 export class HomePageModule {

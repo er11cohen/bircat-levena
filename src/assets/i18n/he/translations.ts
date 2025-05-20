@@ -13,6 +13,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     SEFARD: 'ספרד',
     ASHKENAZ: 'אשכנז',
     TEMAN: 'תימן',
+    CHABAD: 'חב"ד',
     BIRCAT_HALEVANA: 'ברכת הלבנה',
     REMINDER_TO_BIRCAT_HALEVANA: 'תזכורת לברכת הלבנה',
     BL_START_TIME: 'תחילת זמן ברכת הלבנה',

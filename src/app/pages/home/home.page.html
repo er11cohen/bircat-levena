@@ -38,6 +38,7 @@
         <askenaz *ngIf="settings.nusach === nusach.ASKENAZ"></askenaz>
         <sfard  *ngIf="settings.nusach === nusach.SFARAD"></sfard>
         <teiman *ngIf="settings.nusach === nusach.TEIMAN"></teiman>
+        <chabad *ngIf="settings.nusach === nusach.CHABAD"></chabad>
     </div>
     <div class="button-wrapper" *ngIf="!isBlessed">
         <ion-button (click)="blessed()">

@@ -11,6 +11,7 @@ const enTranslationsDictionary = {
   SEFARD: 'Sefard',
   ASHKENAZ: 'Ashkenaz',
   TEMAN: 'Teman',
+  CHABAD: 'Chabad',
   BIRCAT_HALEVANA: 'Birkat Halevana',
   REMINDER_TO_BIRCAT_HALEVANA: 'Birkat Halevana Reminder',
   BL_START_TIME: 'Start time for Birkat Halevana',
