@@ -30,7 +30,7 @@ const enTranslationsDictionary = {
   NOTIFICATIONS_PERMISSION: 'Tzadik, in order to show notifications for Birkat Halevana, access to the notifications permission is required',
   HAPPILY: 'With pleasure',
   WHATS_NEW: 'What\'s new',
-  WHATS_NEW_MESSAGE: 'Added compatibility to Android 14',
+  WHATS_NEW_MESSAGE: 'Added Chabad Nusach',
   APP_SETTINGS: 'App settings',
   NOTIFICATION: 'Notifications',
   LANGUAGE: 'Language',
