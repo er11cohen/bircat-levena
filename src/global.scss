@@ -75,11 +75,22 @@ ion-button {
 
 ion-title {
   padding-inline-start: 0;
+  font-size: x-large;
 }
 
 body[dir='rtl'] {
   .ion-menu-button-toolbar {
     margin-top: 3px;
+  }
+}
+
+html.plt-ios {
+  ion-toolbar {
+    ion-title {
+      text-align: start;
+      padding-inline-end: 15px;
+      padding-inline-start: 50px;
+    }
   }
 }
 
