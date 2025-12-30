@@ -1,14 +1,12 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import {CapacitorConfig} from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.eran.bircatlevana',
   appName: 'תזכורת לברכת הלבנה',
   webDir: 'www',
-  bundledWebRuntime: false,
   cordova: {
     preferences: {
       ScrollEnabled: 'false',
-      'android-minSdkVersion': '22',
       BackupWebStorage: 'none',
       AutoHideSplashScreen: 'false',
       SplashMaintainAspectRatio: 'true',
@@ -16,6 +14,11 @@ const config: CapacitorConfig = {
       SplashScreen: 'screen',
       SplashScreenSpinnerColor: 'white',
       AndroidXEnabled: 'true'
+    }
+  },
+  plugins: {
+    EdgeToEdge: {
+      statusBarColor: '#427ebb',
     }
   }
 };

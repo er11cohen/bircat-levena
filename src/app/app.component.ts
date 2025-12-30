@@ -10,7 +10,6 @@ import {Location} from '@angular/common';
 import {GlobalVariables} from './shared/global/global-variables';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './services/translations-dictionary';
 import {StatusBar, Style} from '@capacitor/status-bar';
-import {EdgeToEdge} from '@capawesome/capacitor-android-edge-to-edge-support';
 
 @Component({
     selector: 'app-root',
@@ -62,7 +61,6 @@ export class AppComponent {
     async initializeApp() {
         await this.platform.ready();
 
-        EdgeToEdge.setBackgroundColor({color: '#427ebb'});
         StatusBar.setStyle({style: Style.Dark});
         // for android 14 and below
         StatusBar.setBackgroundColor({color: '#427ebb'});
