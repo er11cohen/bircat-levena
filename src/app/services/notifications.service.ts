@@ -2,13 +2,13 @@ import {Inject, Injectable} from '@angular/core';
 import {StartBircatLevana} from '../shared/enums';
 import {getZmanimJson, JewishCalendar, Options} from 'kosher-zmanim';
 import {TranslateService} from '@ngx-translate/core';
-import {Storage} from '@ionic/storage';
 import * as moment from 'moment';
 import {Moment} from 'moment';
 import {LocalNotifications, LocalNotificationSchema} from '@capacitor/local-notifications';
 import {
     CancelOptions,
-    LocalNotificationDescriptor, PendingLocalNotificationSchema,
+    LocalNotificationDescriptor,
+    PendingLocalNotificationSchema,
     PendingResult,
     PermissionStatus,
     ScheduleOptions
@@ -21,6 +21,7 @@ import {GlobalVariables} from '../shared/global/global-variables';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './translations-dictionary';
 import {PlatformsService} from './platforms.service';
 import {AlertController} from '@ionic/angular';
+import {PersistentStorageService} from './persistent-storage.service';
 
 @Injectable({
     providedIn: 'root'
@@ -36,7 +37,7 @@ export class NotificationsService {
         @Inject(TRANSLATIONS_DICTIONARY)
         public readonly dict: TranslationsDictionary,
         private readonly translate: TranslateService,
-        private readonly storage: Storage,
+        private readonly storage: PersistentStorageService,
         private readonly settingsService: SettingsService,
         private readonly coordinatesService: CoordinatesService,
         private readonly platformsService: PlatformsService,
@@ -99,7 +100,7 @@ export class NotificationsService {
 
         const jewishSaidCalendar = new JewishCalendar(new Date()) as any;
         const hebrewDate = this.getHebrewSaidFormat(jewishSaidCalendar);
-        const blSaidDate: Array<string> | null = await this.storage.get(GlobalVariables.BL_SAID_DATE);
+        const blSaidDate: Array<string> | null = await this.storage.get(GlobalVariables.BL_SAID_DATE) as Array<string> | null;
         let blSaidDateArr: Array<string> = blSaidDate ? blSaidDate : [];
         if (blSaidDateArr.includes(hebrewDate)) {
             index = 1;
@@ -166,7 +167,7 @@ export class NotificationsService {
     public async isBLAlreadySaid(): Promise<boolean> {
         const jewishSaidCalendar = new JewishCalendar(new Date()) as any;
         const hebrewDate = this.getHebrewSaidFormat(jewishSaidCalendar);
-        const blSaidDate: Array<string> | null = await this.storage.get(GlobalVariables.BL_SAID_DATE);
+        const blSaidDate: Array<string> | null = await this.storage.get(GlobalVariables.BL_SAID_DATE) as Array<string> | null;
         if (blSaidDate?.includes(hebrewDate)) {
             return true;
         }

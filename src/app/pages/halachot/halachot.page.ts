@@ -3,7 +3,7 @@ import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from '../../services/tr
 import {TranslateService} from '@ngx-translate/core';
 import {AlertController, IonContent} from '@ionic/angular';
 import {GlobalVariables} from '../../shared/global/global-variables';
-import {Storage} from '@ionic/storage';
+import {PersistentStorageService} from '../../services/persistent-storage.service';
 
 @Component({
     selector: 'app-halachot',
@@ -19,14 +19,14 @@ export class HalachotPage implements OnDestroy, AfterViewInit {
         @Inject(TRANSLATIONS_DICTIONARY)
         public readonly dict: TranslationsDictionary,
         public readonly translate: TranslateService,
-        private readonly storage: Storage,
+        private readonly storage: PersistentStorageService,
         public alertController: AlertController) {
     }
 
     public async ngAfterViewInit(): Promise<void> {
         const scrollHeight = await this.storage.get(GlobalVariables.SCROLL_HALACHOT);
         if (scrollHeight) {
-            this.ionContent.scrollToPoint(0, scrollHeight);
+            this.ionContent.scrollToPoint(0, scrollHeight as number);
         }
 
         this.scrollElement = await this.ionContent.getScrollElement();

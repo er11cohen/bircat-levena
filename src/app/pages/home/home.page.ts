@@ -11,10 +11,10 @@ import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from '../../services/tr
 import {GlobalVariables} from '../../shared/global/global-variables';
 import {NotificationsService} from '../../services/notifications.service';
 import {PlatformsService} from '../../services/platforms.service';
-import {Storage} from '@ionic/storage';
 import {AppVersion} from '@ionic-native/app-version/ngx';
 import {LocalNotifications} from '@capacitor/local-notifications';
 import {ActionPerformed} from '@capacitor/local-notifications/dist/esm/definitions';
+import {PersistentStorageService} from '../../services/persistent-storage.service';
 
 @Component({
     selector: 'app-home',
@@ -37,7 +37,7 @@ export class HomePage implements OnInit {
                 private readonly market: Market,
                 private readonly toast: Toast,
                 private readonly notificationsService: NotificationsService,
-                private storage: Storage,
+                private storage: PersistentStorageService,
                 private appVersion: AppVersion) {
     }
 

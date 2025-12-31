@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Settings} from '../models/settings';
 import {GlobalVariables} from '../shared/global/global-variables';
-import {Storage} from '@ionic/storage';
 import {FontSize, Languages, Nusach, StartBircatLevana} from '../shared/enums';
 import {TranslateService} from '@ngx-translate/core';
 import {StatusBar} from '@capacitor/status-bar';
+import {PersistentStorageService} from './persistent-storage.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +14,7 @@ export class SettingsService {
     private settings: Settings;
 
     constructor(
-        private readonly storage: Storage,
+        private readonly storage: PersistentStorageService,
         private readonly translate: TranslateService,
     ) {
     }
@@ -23,7 +23,7 @@ export class SettingsService {
         if (this.settings) {
             return;
         }
-        this.settings = await this.storage.get(GlobalVariables.SETTINGS);
+        this.settings = await this.storage.get(GlobalVariables.SETTINGS) as Settings | null;
         const defaultSettings = {
             nusach: Nusach.EDOT_MIZRACH,
             startBircatLevana: StartBircatLevana.SEVEN,

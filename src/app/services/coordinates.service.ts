@@ -1,12 +1,12 @@
 import {Inject, Injectable} from '@angular/core';
 import {Geolocation as Geolocation} from '@capacitor/geolocation';
 import {GlobalVariables} from '../shared/global/global-variables';
-import {Storage} from '@ionic/storage';
 import {BLCoordinates} from '../models/coordinates';
 import {AlertController} from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
 import {TRANSLATIONS_DICTIONARY, TranslationsDictionary} from './translations-dictionary';
 import {PermissionStatus, Position} from '@capacitor/geolocation/dist/esm/definitions';
+import {PersistentStorageService} from './persistent-storage.service';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +17,7 @@ export class CoordinatesService {
     private resolve: any;
 
     constructor(
-        private readonly storage: Storage,
+        private readonly storage: PersistentStorageService,
         private readonly alertController: AlertController,
         private readonly translate: TranslateService,
         @Inject(TRANSLATIONS_DICTIONARY)
@@ -97,7 +97,7 @@ export class CoordinatesService {
     }
 
     private async fallbackCoordinates(): Promise<void> {
-        this.coordinates = await this.storage.get(GlobalVariables.LAST_COORD);
+        this.coordinates = await this.storage.get(GlobalVariables.LAST_COORD) as BLCoordinates | null;
         if (!this.coordinates) {
             this.setHarHabayisCoordinates();
         }
