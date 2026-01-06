@@ -32,7 +32,7 @@ const iwTranslationsDictionary: TranslationsDictionary = {
     NOTIFICATIONS_PERMISSION: 'צדיק כדי להציג תזכורות לברכת הלבנה אנא אשר הרשאת התראות',
     HAPPILY: 'בשמחה',
     WHATS_NEW: 'מה חדש?',
-    WHATS_NEW_MESSAGE: 'נוסף נוסח חב"ד<b><br><br>הגרסה מוקדשת לרפואת נעימה בת שרה ורות בת רבקה <br><br> ולעילוי נשמת משה בן מורוורי<b>',
+    WHATS_NEW_MESSAGE: 'שודרגה תמיכה לאנדרואיד 16<br> עקב השידרוג יש להגדיר את ההגדרות מחדש במסך ההגדרות באם הם שונו<b><br><br>הגרסה מוקדשת לרפואת נעימה בת שרה ורות בת רבקה <br><br> ולעילוי נשמת משה בן מורוורי<b>',
     APP_SETTINGS: 'הגדרות אפלקציה',
     NOTIFICATION: 'התראות',
     LANGUAGE: 'שפה',

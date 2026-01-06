@@ -30,7 +30,7 @@ const enTranslationsDictionary = {
   NOTIFICATIONS_PERMISSION: 'Tzadik, in order to show notifications for Birkat Halevana, access to the notifications permission is required',
   HAPPILY: 'With pleasure',
   WHATS_NEW: 'What\'s new',
-  WHATS_NEW_MESSAGE: 'Added Chabad Nusach',
+  WHATS_NEW_MESSAGE: 'Support has been upgraded for Android 16 <br> Due to the upgrade, if settings were previously changed, they must be reconfigured in the settings screen.<b><br><br> This version is dedicated to Refuah Shlema of Neima bat Sarah and Rut bat Rivka <br><br>And in memory of Moshe ben Murwari<b>',
   APP_SETTINGS: 'App settings',
   NOTIFICATION: 'Notifications',
   LANGUAGE: 'Language',
